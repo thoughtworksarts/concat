@@ -210,6 +210,8 @@ void ofApp::setupCurrentAngles(){
 }
 
 void ofApp::update(){
+    segmentThickness = 8;
+
     if(ofGetFrameNum() % 60 == 0){
         incrementTargetArmPosition();
         animateToNewArmPosition();
@@ -253,8 +255,10 @@ void ofApp::draw(){
 
 void ofApp::drawArmSegment(){
     ofSetColor(ofColor::wheat);
-    ofSetLineWidth(3);
+    ofSetLineWidth(segmentThickness);
     ofDrawLine(0, 0, 0, armSegmentLength);
+    segmentThickness -= 2;
+
     ofSetColor(ofColor::green);
     ofSetLineWidth(1);
     ofDrawLine(0, halfArmSegmentLength, rotationHandleLength, halfArmSegmentLength);
@@ -263,7 +267,7 @@ void ofApp::drawArmSegment(){
 
 void ofApp::drawHead(){
     ofSetColor(ofColor::wheat);
-    ofSetLineWidth(4);
+    ofSetLineWidth(2);
     ofDrawLine(0, 0, 0, headLength);
     ofSetColor(ofColor::red);
     ofSetLineWidth(1);

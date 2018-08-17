@@ -21,6 +21,8 @@ class ofApp : public ofBaseApp{
     int headLength, halfHeadLength;
     int rotationHandleLength;
 
+    int segmentThickness;
+
     vector<vector<float>> targetAngles;
     vector<ofxAnimatableFloat> currentAngles;
     int currentArmPosition;
