@@ -9,4 +9,7 @@ class ofApp : public ofBaseApp{
     void draw();
     void drawLine();
     void setCoordinateSystem();
+
+    int armSegmentLength, halfArmSegmentLength;
+    int rotationHandleLength;
 };
