@@ -2,8 +2,11 @@
 
 void ofApp::setup(){
     armSegmentLength = 200;
+    headLength = 70;
     rotationHandleLength = 30;
+
     halfArmSegmentLength = armSegmentLength * 0.5;
+    halfHeadLength = headLength * 0.5;
 
     currentArmPosition = 0;
     numAngles = 6;
@@ -244,7 +247,7 @@ void ofApp::draw(){
     drawArmSegment();
     ofRotateY(currentAngles.at(4).getCurrentValue());
     ofRotateZ(currentAngles.at(5).getCurrentValue());
-    drawArmSegment();
+    drawHead();
     ofPopMatrix();
 }
 
@@ -256,6 +259,16 @@ void ofApp::drawArmSegment(){
     ofSetLineWidth(1);
     ofDrawLine(0, halfArmSegmentLength, rotationHandleLength, halfArmSegmentLength);
     ofTranslate(0, armSegmentLength);
+}
+
+void ofApp::drawHead(){
+    ofSetColor(ofColor::wheat);
+    ofSetLineWidth(4);
+    ofDrawLine(0, 0, 0, headLength);
+    ofSetColor(ofColor::red);
+    ofSetLineWidth(1);
+    ofDrawLine(0, halfHeadLength, rotationHandleLength, halfHeadLength);
+    ofTranslate(0, headLength);
 }
 
 void ofApp::setCoordinateSystem(){

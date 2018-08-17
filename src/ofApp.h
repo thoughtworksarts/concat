@@ -13,10 +13,12 @@ class ofApp : public ofBaseApp{
     void animateToNewArmPosition();
     void draw();
     void drawArmSegment();
+    void drawHead();
     void setCoordinateSystem();
 
     int numAngles;
     int armSegmentLength, halfArmSegmentLength;
+    int headLength, halfHeadLength;
     int rotationHandleLength;
 
     vector<vector<float>> targetAngles;
