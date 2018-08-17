@@ -12,4 +12,6 @@ class ofApp : public ofBaseApp{
 
     int armSegmentLength, halfArmSegmentLength;
     int rotationHandleLength;
+
+    vector<vector<float>> movements;
 };
