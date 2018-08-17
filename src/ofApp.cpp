@@ -15,7 +15,12 @@ void ofApp::draw(){
     ofPushMatrix();
     setCoordinateSystem();
     drawArmSegment();
+    ofRotateZ(30);
     drawArmSegment();
+    ofRotateX(60);
+    drawArmSegment();
+    ofRotateX(-60);
+    ofRotateZ(-30);
     drawArmSegment();
     ofPopMatrix();
 }
