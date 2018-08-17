@@ -32,10 +32,17 @@ void ofApp::setup(){
     movements.push_back(pos1);
     movements.push_back(pos2);
     movements.push_back(pos3);
+
+    currentArmPosition = 0;
 }
 
 void ofApp::update(){
-
+    if(ofGetFrameNum() % 60 == 0){
+        currentArmPosition++;
+        if(currentArmPosition >= movements.size()){
+            currentArmPosition = 0;
+        }
+    }
 }
 
 void ofApp::draw(){
@@ -43,14 +50,14 @@ void ofApp::draw(){
     ofPushMatrix();
     setCoordinateSystem();
     drawArmSegment();
-    ofRotateY(movements.at(0).at(0));
-    ofRotateZ(movements.at(0).at(1));
+    ofRotateY(movements.at(currentArmPosition).at(0));
+    ofRotateZ(movements.at(currentArmPosition).at(1));
     drawArmSegment();
-    ofRotateY(movements.at(0).at(2));
-    ofRotateZ(movements.at(0).at(3));
+    ofRotateY(movements.at(currentArmPosition).at(2));
+    ofRotateZ(movements.at(currentArmPosition).at(3));
     drawArmSegment();
-    ofRotateY(movements.at(0).at(4));
-    ofRotateZ(movements.at(0).at(5));
+    ofRotateY(movements.at(currentArmPosition).at(4));
+    ofRotateZ(movements.at(currentArmPosition).at(5));
     drawArmSegment();
     ofPopMatrix();
 }

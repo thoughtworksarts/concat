@@ -14,4 +14,5 @@ class ofApp : public ofBaseApp{
     int rotationHandleLength;
 
     vector<vector<float>> movements;
+    int currentArmPosition;
 };
