@@ -10,6 +10,7 @@ public:
     void setup();
     void setupTargetAngles();
     void setupCurrentAngles();
+    void setupPrimitives();
     void update();
     void incrementTargetArmPosition();
     void animateToNewArmPosition();
@@ -32,4 +33,6 @@ protected:
     int currentArmPosition;
 
     ccParser dataParser;
+
+    ofBoxPrimitive box;
 };

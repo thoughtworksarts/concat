@@ -13,6 +13,7 @@ void ofApp::setup(){
 
     setupTargetAngles();
     setupCurrentAngles();
+    setupPrimitives();
 }
 
 void ofApp::setupTargetAngles(){
@@ -29,6 +30,10 @@ void ofApp::setupCurrentAngles(){
         currentAngles.back().setCurve(LINEAR);
         currentAngles.back().reset(targetAngles.at(0).at(i));
     }
+}
+
+void ofApp::setupPrimitives() {
+    box.set(30, 200, 30);
 }
 
 void ofApp::update(){
@@ -80,6 +85,15 @@ void ofApp::drawArmSegment(){
     ofSetLineWidth(segmentThickness);
     ofDrawLine(0, 0, 0, armSegmentLength);
     segmentThickness -= 2;
+
+    ofPushMatrix();
+    ofTranslate(0, halfArmSegmentLength);
+    ofSetLineWidth(1);
+    ofSetColor(ofColor::grey);
+    box.draw();
+    ofSetColor(ofColor::white);
+    box.drawWireframe();
+    ofPopMatrix();
 
     ofSetColor(ofColor::green);
     ofSetLineWidth(1);
