@@ -2,6 +2,7 @@
 
 void ofApp::setup(){
     armSegmentLength = 200;
+    armSegmentThickness = 10;
     headLength = 70;
     rotationHandleLength = 30;
 
@@ -10,6 +11,7 @@ void ofApp::setup(){
 
     currentArmPosition = 0;
     numAngles = 6;
+    numArmSegments = 3;
 
     setupTargetAngles();
     setupCurrentAngles();
@@ -33,12 +35,15 @@ void ofApp::setupCurrentAngles(){
 }
 
 void ofApp::setupPrimitives() {
-    box.set(30, 200, 30);
+    ofBoxPrimitive armSegment;
+    for (int i = 0; i < numArmSegments; i++) {
+        int thickness = 50 - i * armSegmentThickness;
+        armSegments.push_back(armSegment);
+        armSegments.back().set(thickness, armSegmentLength, thickness);
+    }
 }
 
 void ofApp::update(){
-    segmentThickness = 8;
-
     if(ofGetFrameNum() % 60 == 0){
         incrementTargetArmPosition();
         animateToNewArmPosition();
@@ -67,32 +72,27 @@ void ofApp::draw(){
     ofBackground(ofColor::black);
     ofPushMatrix();
     setCoordinateSystem();
-    drawArmSegment();
+    drawArmSegment(0);
     ofRotateY(currentAngles.at(0).getCurrentValue());
     ofRotateZ(currentAngles.at(1).getCurrentValue());
-    drawArmSegment();
+    drawArmSegment(1);
     ofRotateY(currentAngles.at(2).getCurrentValue());
     ofRotateZ(currentAngles.at(3).getCurrentValue());
-    drawArmSegment();
+    drawArmSegment(2);
     ofRotateY(currentAngles.at(4).getCurrentValue());
     ofRotateZ(currentAngles.at(5).getCurrentValue());
     drawHead();
     ofPopMatrix();
 }
 
-void ofApp::drawArmSegment(){
-    ofSetColor(ofColor::wheat);
-    ofSetLineWidth(segmentThickness);
-    ofDrawLine(0, 0, 0, armSegmentLength);
-    segmentThickness -= 2;
-
+void ofApp::drawArmSegment(int segmentId){
     ofPushMatrix();
     ofTranslate(0, halfArmSegmentLength);
     ofSetLineWidth(1);
     ofSetColor(ofColor::grey);
-    box.draw();
+    armSegments.at(segmentId).draw();
     ofSetColor(ofColor::white);
-    box.drawWireframe();
+    armSegments.at(segmentId).drawWireframe();
     ofPopMatrix();
 
     ofSetColor(ofColor::green);

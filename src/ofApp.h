@@ -15,18 +15,16 @@ public:
     void incrementTargetArmPosition();
     void animateToNewArmPosition();
     void draw();
-    void drawArmSegment();
+    void drawArmSegment(int segmentId);
     void drawHead();
     void keyPressed(int key);
 
 protected:
     void setCoordinateSystem();
-    int numAngles;
-    int armSegmentLength, halfArmSegmentLength;
+    int numAngles, numArmSegments;
+    int armSegmentLength, armSegmentThickness, halfArmSegmentLength;
     int headLength, halfHeadLength;
     int rotationHandleLength;
-
-    int segmentThickness;
 
     vector<vector<float>> targetAngles;
     vector<ofxAnimatableFloat> currentAngles;
@@ -34,5 +32,6 @@ protected:
 
     ccParser dataParser;
 
-    ofBoxPrimitive box;
+    vector<ofBoxPrimitive> armSegments;
+    
 };
