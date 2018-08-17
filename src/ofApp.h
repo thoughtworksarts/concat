@@ -5,7 +5,8 @@
 #include "ccParser.h"
 
 class ofApp : public ofBaseApp{
-    public:
+
+public:
     void setup();
     void setupTargetAngles();
     void setupCurrentAngles();
@@ -15,8 +16,10 @@ class ofApp : public ofBaseApp{
     void draw();
     void drawArmSegment();
     void drawHead();
-    void setCoordinateSystem();
+    void keyPressed(int key);
 
+protected:
+    void setCoordinateSystem();
     int numAngles;
     int armSegmentLength, halfArmSegmentLength;
     int headLength, halfHeadLength;

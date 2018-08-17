@@ -97,6 +97,12 @@ void ofApp::drawHead(){
     ofTranslate(0, headLength);
 }
 
+void ofApp::keyPressed(int key){
+    if (key == ' ') {
+        currentArmPosition = 0;
+    }
+}
+
 void ofApp::setCoordinateSystem(){
     ofTranslate(ofGetWidth() * 0.5, ofGetHeight());
     ofRotateZ(180);
