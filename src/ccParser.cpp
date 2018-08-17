@@ -19,8 +19,16 @@ void ccParser::loadFileContents(ofBuffer& buffer){
     for (ofBuffer::Line it = buffer.getLines().begin(), end = buffer.getLines().end(); it != end; ++it) {
         string line = *it;
 
-        if (!line.empty()) {
-            cout << line << endl;
+        if (line.substr(1, 2) == ". ") {
+            anglesArray.push_back(ofToFloat(line.substr(3)));
+            if (anglesArray.size() == 6) {
+                targetAngles.push_back(anglesArray);
+                anglesArray.clear();
+            }
         }
     }
+}
+
+vector<vector<float>> ccParser::getTargetAngles() {
+    return targetAngles;
 }
