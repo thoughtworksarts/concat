@@ -14,17 +14,20 @@ void ofApp::draw(){
     ofBackground(ofColor::black);
     ofPushMatrix();
     setCoordinateSystem();
-    drawLine();
+    drawArmSegment();
+    drawArmSegment();
+    drawArmSegment();
     ofPopMatrix();
 }
 
-void ofApp::drawLine(){
+void ofApp::drawArmSegment(){
     ofSetColor(ofColor::wheat);
     ofSetLineWidth(3);
     ofDrawLine(0, 0, 0, armSegmentLength);
     ofSetColor(ofColor::green);
     ofSetLineWidth(1);
     ofDrawLine(0, halfArmSegmentLength, rotationHandleLength, halfArmSegmentLength);
+    ofTranslate(0, armSegmentLength);
 }
 
 void ofApp::setCoordinateSystem(){

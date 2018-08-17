@@ -7,7 +7,7 @@ class ofApp : public ofBaseApp{
     void setup();
     void update();
     void draw();
-    void drawLine();
+    void drawArmSegment();
     void setCoordinateSystem();
 
     int armSegmentLength, halfArmSegmentLength;
