@@ -11,6 +11,7 @@ void ofApp::setup(){
     currentArmPosition = 0;
     numAngles = 6;
 
+    dataParser.setup();
     setupTargetAngles();
     setupCurrentAngles();
 }

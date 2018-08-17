@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxAnimatableFloat.h"
+#include "ccParser.h"
 
 class ofApp : public ofBaseApp{
     public:
@@ -26,4 +27,6 @@ class ofApp : public ofBaseApp{
     vector<vector<float>> targetAngles;
     vector<ofxAnimatableFloat> currentAngles;
     int currentArmPosition;
+
+    ccParser dataParser;
 };
