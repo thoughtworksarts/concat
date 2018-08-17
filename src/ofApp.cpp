@@ -5,6 +5,14 @@ void ofApp::setup(){
     rotationHandleLength = 30;
     halfArmSegmentLength = armSegmentLength * 0.5;
 
+    currentArmPosition = 0;
+    numAngles = 6;
+
+    setupTargetAngles();
+    setupCurrentAngles();
+}
+
+void ofApp::setupTargetAngles(){
     vector<float> pos1;
     pos1.push_back(107.556142);
     pos1.push_back(18.287954);
@@ -29,19 +37,44 @@ void ofApp::setup(){
     pos3.push_back(60.845318);
     pos3.push_back(63.778976);
 
-    movements.push_back(pos1);
-    movements.push_back(pos2);
-    movements.push_back(pos3);
+    targetAngles.push_back(pos1);
+    targetAngles.push_back(pos2);
+    targetAngles.push_back(pos3);
+}
 
-    currentArmPosition = 0;
+void ofApp::setupCurrentAngles(){
+    ofxAnimatableFloat angle;
+    for(int i = 0; i < numAngles; i++){
+        currentAngles.push_back(angle);
+        currentAngles.back().setup();
+        currentAngles.back().setDuration(1);
+        currentAngles.back().setCurve(LINEAR);
+        currentAngles.back().reset(targetAngles.at(0).at(i));
+    }
 }
 
 void ofApp::update(){
     if(ofGetFrameNum() % 60 == 0){
-        currentArmPosition++;
-        if(currentArmPosition >= movements.size()){
-            currentArmPosition = 0;
-        }
+        incrementTargetArmPosition();
+        animateToNewArmPosition();
+    }
+
+    for(int i = 0; i < currentAngles.size(); i++){
+        currentAngles.at(i).update(ofGetLastFrameTime());
+    }
+}
+
+void ofApp::incrementTargetArmPosition(){
+    currentArmPosition++;
+    if(currentArmPosition >= targetAngles.size()){
+        currentArmPosition = 0;
+    }
+}
+
+void ofApp::animateToNewArmPosition(){
+    for(int i = 0; i < currentAngles.size(); i++){
+        float targetAngle = targetAngles.at(currentArmPosition).at(i);
+        currentAngles.at(i).animateTo(targetAngle);
     }
 }
 
@@ -50,14 +83,14 @@ void ofApp::draw(){
     ofPushMatrix();
     setCoordinateSystem();
     drawArmSegment();
-    ofRotateY(movements.at(currentArmPosition).at(0));
-    ofRotateZ(movements.at(currentArmPosition).at(1));
+    ofRotateY(currentAngles.at(0).getCurrentValue());
+    ofRotateZ(currentAngles.at(1).getCurrentValue());
     drawArmSegment();
-    ofRotateY(movements.at(currentArmPosition).at(2));
-    ofRotateZ(movements.at(currentArmPosition).at(3));
+    ofRotateY(currentAngles.at(2).getCurrentValue());
+    ofRotateZ(currentAngles.at(3).getCurrentValue());
     drawArmSegment();
-    ofRotateY(movements.at(currentArmPosition).at(4));
-    ofRotateZ(movements.at(currentArmPosition).at(5));
+    ofRotateY(currentAngles.at(4).getCurrentValue());
+    ofRotateZ(currentAngles.at(5).getCurrentValue());
     drawArmSegment();
     ofPopMatrix();
 }
