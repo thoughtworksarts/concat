@@ -11,6 +11,7 @@ void ofApp::update(){
 }
 
 void ofApp::draw(){
+    ofBackground(ofColor::black);
     ofPushMatrix();
     setCoordinateSystem();
     drawLine();
@@ -19,8 +20,10 @@ void ofApp::draw(){
 
 void ofApp::drawLine(){
     ofSetColor(ofColor::wheat);
+    ofSetLineWidth(3);
     ofDrawLine(0, 0, 0, armSegmentLength);
     ofSetColor(ofColor::green);
+    ofSetLineWidth(1);
     ofDrawLine(0, halfArmSegmentLength, rotationHandleLength, halfArmSegmentLength);
 }
 
