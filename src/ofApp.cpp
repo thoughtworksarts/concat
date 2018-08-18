@@ -16,6 +16,7 @@ void ofApp::setup(){
     currentArmPosition = 0;
     numAngles = 6;
     numArmSegments = 3;
+    numLights = 4;
 
     showWireframes = false;
     showLights = false;
@@ -60,15 +61,18 @@ void ofApp::setupPrimitives() {
 void ofApp::setupLighting() {
     ofEnableDepthTest();
 
-    pointLight1.setDiffuseColor(ofFloatColor(.85, .85, .55));
-    pointLight1.setSpecularColor(ofFloatColor(1.f, 1.f, 1.f));
-    pointLight1.setPosition(ofGetWidth() * 0.75, ofGetHeight() * 0.25, -20);
-    pointLight1.enable();
+    for (int i = 0; i < numLights; i++) {
+        ofLight light;
+        lights.push_back(light);
+        lights.back().setDiffuseColor(ofFloatColor(.85, .85, .55));
+        lights.back().setSpecularColor(ofFloatColor(1.f, 1.f, 1.f));
+        lights.back().enable();
+    }
 
-    pointLight2.setDiffuseColor(ofFloatColor(.85, .85, .55));
-    pointLight2.setSpecularColor(ofFloatColor(1.f, 1.f, 1.f));
-    pointLight2.setPosition(ofGetWidth() * 0.25, ofGetHeight() * 0.25, -20);
-    pointLight2.enable();
+    lights[0].setPosition(ofGetWidth() * 0.25, ofGetHeight() * 0.45, -20);
+    lights[1].setPosition(ofGetWidth() * 0.75, ofGetHeight() * 0.45, -20);
+    lights[2].setPosition(ofGetWidth() * 0.25, ofGetHeight() * 0.95, -20);
+    lights[3].setPosition(ofGetWidth() * 0.75, ofGetHeight() * 0.95, -20);
 
     material.setShininess(120);
     material.setSpecularColor(ofColor(255, 255, 255, 255));
@@ -111,8 +115,9 @@ void ofApp::draw(){
     }
 
     if (showLights) {
-        pointLight1.draw();
-        pointLight2.draw();
+        for (const auto& light : lights) {
+            light.draw();
+        }
     }
 
     ofPushMatrix();

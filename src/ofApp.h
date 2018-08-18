@@ -22,7 +22,7 @@ public:
 
 protected:
     void setCoordinateSystem();
-    int numAngles, numArmSegments;
+    int numAngles, numArmSegments, numLights;
     int armLength, armSegmentLength, armSegmentThickness, jointSize, halfJointSize, halfArmLength;
     int headLength, halfHeadLength;
     int rotationHandleLength;
@@ -35,7 +35,8 @@ protected:
 
     vector<ofBoxPrimitive> armSegments;
     vector<ofSpherePrimitive> joints;
+    vector<ofLight> lights;
+
     ofMaterial material;
-    ofLight pointLight1, pointLight2;
     bool showWireframes, showLights;
 };
