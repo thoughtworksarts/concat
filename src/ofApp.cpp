@@ -16,7 +16,7 @@ void ofApp::setup(){
     currentArmPosition = 0;
     numAngles = 6;
     numArmSegments = 3;
-    numLights = 4;
+    numLights = 5;
 
     showWireframes = false;
     showLights = false;
@@ -69,16 +69,26 @@ void ofApp::setupLighting() {
         lights.back().enable();
     }
 
-    lights[0].setPosition(ofGetWidth() * 0.25, ofGetHeight() * 0.45, -20);
-    lights[1].setPosition(ofGetWidth() * 0.75, ofGetHeight() * 0.45, -20);
-    lights[2].setPosition(ofGetWidth() * 0.25, ofGetHeight() * 0.95, -20);
-    lights[3].setPosition(ofGetWidth() * 0.75, ofGetHeight() * 0.95, -20);
-
     material.setShininess(120);
     material.setSpecularColor(ofColor(255, 255, 255, 255));
 }
 
 void ofApp::update(){
+    if (showLights) {
+        lightingHeightAdjustment = ofMap(ofGetMouseY(), 0, ofGetHeight(), -0.25, 0);
+        lightingDepth = ofMap(ofGetMouseX(), 0, ofGetWidth(), -200, 200);
+        cout << "lightingHeightAdjustment = " << lightingHeightAdjustment << endl;
+        cout << "lightingDepth = " << lightingDepth << endl;
+    } else {
+        lightingHeightAdjustment = 0.00130209;
+        lightingDepth = -73.4375;
+    }
+    lights[0].setPosition(ofGetWidth() * 0.25, ofGetHeight() * (0.45 + lightingHeightAdjustment), lightingDepth);
+    lights[1].setPosition(ofGetWidth() * 0.75, ofGetHeight() * (0.45 + lightingHeightAdjustment), lightingDepth);
+    lights[2].setPosition(ofGetWidth() * 0.25, ofGetHeight() * (0.95 + lightingHeightAdjustment), lightingDepth);
+    lights[3].setPosition(ofGetWidth() * 0.75, ofGetHeight() * (0.95 + lightingHeightAdjustment), lightingDepth);
+    lights[4].setPosition(ofGetWidth() * 0.5, ofGetHeight() * 0.9, 205);
+
     if(ofGetFrameNum() % 60 == 0){
         incrementTargetArmPosition();
         animateToNewArmPosition();

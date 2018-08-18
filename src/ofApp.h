@@ -39,4 +39,7 @@ protected:
 
     ofMaterial material;
     bool showWireframes, showLights;
+
+    float lightingHeightAdjustment;
+    float lightingDepth;
 };
