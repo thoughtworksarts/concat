@@ -37,4 +37,5 @@ protected:
     vector<ofSpherePrimitive> joints;
     ofMaterial material;
     ofLight pointLight1, pointLight2;
+    bool showWireframes, showLights;
 };

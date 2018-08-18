@@ -17,6 +17,9 @@ void ofApp::setup(){
     numAngles = 6;
     numArmSegments = 3;
 
+    showWireframes = false;
+    showLights = false;
+
     setupTargetAngles();
     setupCurrentAngles();
     setupPrimitives();
@@ -55,9 +58,6 @@ void ofApp::setupPrimitives() {
 }
 
 void ofApp::setupLighting() {
-    ofEnableLighting();
-    ofSetSmoothLighting(true);
-
     pointLight1.setDiffuseColor(ofFloatColor(.85, .85, .55));
     pointLight1.setSpecularColor(ofFloatColor(1.f, 1.f, 1.f));
     pointLight1.setPosition(ofGetWidth() * 0.75, ofGetHeight() * 0.25, -20);
@@ -100,6 +100,19 @@ void ofApp::animateToNewArmPosition(){
 void ofApp::draw(){
     ofBackground(ofColor::black);
 
+    if (showWireframes) {
+        ofDisableLighting();
+        ofSetSmoothLighting(false);
+    } else {
+        ofEnableLighting();
+        ofSetSmoothLighting(true);
+    }
+
+    if (showLights) {
+        pointLight1.draw();
+        pointLight2.draw();
+    }
+
     ofPushMatrix();
     setCoordinateSystem();
     drawArmSegment(0);
@@ -113,9 +126,6 @@ void ofApp::draw(){
     ofRotateZ(currentAngles.at(5).getCurrentValue());
     drawHead();
     ofPopMatrix();
-
-    pointLight1.draw();
-    pointLight2.draw();
 }
 
 void ofApp::drawArmSegment(int segmentId){
@@ -125,17 +135,23 @@ void ofApp::drawArmSegment(int segmentId){
     ofPushMatrix();
     ofTranslate(0, halfArmLength);
 
-    ofSetColor(ofColor::grey);
-    armSegments.at(segmentId).draw();
-    ofSetColor(ofColor::white);
-    //armSegments.at(segmentId).drawWireframe();
+    if (showWireframes) {
+        ofSetColor(ofColor::white);
+        armSegments.at(segmentId).drawWireframe();
+    } else {
+        ofSetColor(ofColor::grey);
+        armSegments.at(segmentId).draw();
+    }
 
     ofTranslate(0, halfArmLength);
 
-    ofSetColor(ofColor::grey);
-    joints.at(segmentId).draw();
-    ofSetColor(ofColor::white);
-    //joints.at(segmentId).drawWireframe();
+    if (showWireframes) {
+        ofSetColor(ofColor::white);
+        joints.at(segmentId).drawWireframe();
+    } else {
+        ofSetColor(ofColor::grey);
+        joints.at(segmentId).draw();
+    }
 
     ofPopMatrix();
 
@@ -158,8 +174,12 @@ void ofApp::drawHead(){
 }
 
 void ofApp::keyPressed(int key){
-    if (key == ' ') {
+    if (key == 'r') {
         currentArmPosition = 0;
+    } else if (key == 'w') {
+        showWireframes = !showWireframes;
+    } else if (key == 'l') {
+        showLights = !showLights;
     }
 }
 
