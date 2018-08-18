@@ -22,7 +22,7 @@ public:
 protected:
     void setCoordinateSystem();
     int numAngles, numArmSegments;
-    int armSegmentLength, armSegmentThickness, halfArmSegmentLength;
+    int armLength, armSegmentLength, armSegmentThickness, jointSize, halfJointSize, halfArmLength;
     int headLength, halfHeadLength;
     int rotationHandleLength;
 

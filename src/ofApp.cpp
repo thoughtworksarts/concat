@@ -1,13 +1,17 @@
 #include "ofApp.h"
 
 void ofApp::setup(){
-    armSegmentLength = 200;
+    armLength = 200;
+    jointSize = 50;
     armSegmentThickness = 10;
+    armSegmentLength = armLength - jointSize;
+
     headLength = 70;
     rotationHandleLength = 30;
 
-    halfArmSegmentLength = armSegmentLength * 0.5;
+    halfArmLength = armLength * 0.5;
     halfHeadLength = headLength * 0.5;
+    halfJointSize = jointSize * 0.5;
 
     currentArmPosition = 0;
     numAngles = 6;
@@ -87,7 +91,7 @@ void ofApp::draw(){
 
 void ofApp::drawArmSegment(int segmentId){
     ofPushMatrix();
-    ofTranslate(0, halfArmSegmentLength);
+    ofTranslate(0, halfArmLength + halfJointSize);
     ofSetLineWidth(1);
     ofSetColor(ofColor::grey);
     armSegments.at(segmentId).draw();
@@ -97,8 +101,8 @@ void ofApp::drawArmSegment(int segmentId){
 
     ofSetColor(ofColor::green);
     ofSetLineWidth(1);
-    ofDrawLine(0, halfArmSegmentLength, rotationHandleLength, halfArmSegmentLength);
-    ofTranslate(0, armSegmentLength);
+    ofDrawLine(0, halfArmLength, rotationHandleLength, halfArmLength);
+    ofTranslate(0, armLength + jointSize);
 }
 
 void ofApp::drawHead(){
