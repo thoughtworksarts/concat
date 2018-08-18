@@ -33,5 +33,6 @@ protected:
     ccParser dataParser;
 
     vector<ofBoxPrimitive> armSegments;
+    vector<ofSpherePrimitive> joints;
     
 };

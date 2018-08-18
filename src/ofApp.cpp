@@ -45,6 +45,12 @@ void ofApp::setupPrimitives() {
         armSegments.push_back(armSegment);
         armSegments.back().set(thickness, armSegmentLength, thickness);
     }
+
+    ofSpherePrimitive joint;
+    for (int i = 0; i < numArmSegments; i++) {
+        joints.push_back(joint);
+        joints.back().setRadius(halfJointSize - 5 * i);
+    }
 }
 
 void ofApp::update(){
@@ -91,18 +97,26 @@ void ofApp::draw(){
 
 void ofApp::drawArmSegment(int segmentId){
     ofPushMatrix();
-    ofTranslate(0, halfArmLength + halfJointSize);
-    ofSetLineWidth(1);
+    ofTranslate(0, halfArmLength);
+
     ofSetColor(ofColor::grey);
     armSegments.at(segmentId).draw();
     ofSetColor(ofColor::white);
     armSegments.at(segmentId).drawWireframe();
+
+    ofTranslate(0, halfArmLength);
+
+    ofSetColor(ofColor::grey);
+    joints.at(segmentId).draw();
+    ofSetColor(ofColor::white);
+    joints.at(segmentId).drawWireframe();
+
     ofPopMatrix();
 
     ofSetColor(ofColor::green);
     ofSetLineWidth(1);
     ofDrawLine(0, halfArmLength, rotationHandleLength, halfArmLength);
-    ofTranslate(0, armLength + jointSize);
+    ofTranslate(0, armLength);
 }
 
 void ofApp::drawHead(){
