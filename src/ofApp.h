@@ -11,6 +11,7 @@ public:
     void setupTargetAngles();
     void setupCurrentAngles();
     void setupPrimitives();
+    void setupLighting();
     void update();
     void incrementTargetArmPosition();
     void animateToNewArmPosition();
@@ -34,5 +35,6 @@ protected:
 
     vector<ofBoxPrimitive> armSegments;
     vector<ofSpherePrimitive> joints;
-    
+    ofMaterial material;
+    ofLight pointLight1, pointLight2;
 };

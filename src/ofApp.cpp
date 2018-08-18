@@ -20,6 +20,7 @@ void ofApp::setup(){
     setupTargetAngles();
     setupCurrentAngles();
     setupPrimitives();
+    setupLighting();
 }
 
 void ofApp::setupTargetAngles(){
@@ -53,6 +54,24 @@ void ofApp::setupPrimitives() {
     }
 }
 
+void ofApp::setupLighting() {
+    ofEnableLighting();
+    ofSetSmoothLighting(true);
+
+    pointLight1.setDiffuseColor(ofFloatColor(.85, .85, .55));
+    pointLight1.setSpecularColor(ofFloatColor(1.f, 1.f, 1.f));
+    pointLight1.setPosition(ofGetWidth() * 0.75, ofGetHeight() * 0.25, -20);
+    pointLight1.enable();
+
+    pointLight2.setDiffuseColor(ofFloatColor(.85, .85, .55));
+    pointLight2.setSpecularColor(ofFloatColor(1.f, 1.f, 1.f));
+    pointLight2.setPosition(ofGetWidth() * 0.25, ofGetHeight() * 0.25, -20);
+    pointLight2.enable();
+
+    material.setShininess(120);
+    material.setSpecularColor(ofColor(255, 255, 255, 255));
+}
+
 void ofApp::update(){
     if(ofGetFrameNum() % 60 == 0){
         incrementTargetArmPosition();
@@ -80,6 +99,7 @@ void ofApp::animateToNewArmPosition(){
 
 void ofApp::draw(){
     ofBackground(ofColor::black);
+
     ofPushMatrix();
     setCoordinateSystem();
     drawArmSegment(0);
@@ -93,23 +113,29 @@ void ofApp::draw(){
     ofRotateZ(currentAngles.at(5).getCurrentValue());
     drawHead();
     ofPopMatrix();
+
+    pointLight1.draw();
+    pointLight2.draw();
 }
 
 void ofApp::drawArmSegment(int segmentId){
+    material.begin();
+    ofFill();
+
     ofPushMatrix();
     ofTranslate(0, halfArmLength);
 
     ofSetColor(ofColor::grey);
     armSegments.at(segmentId).draw();
     ofSetColor(ofColor::white);
-    armSegments.at(segmentId).drawWireframe();
+    //armSegments.at(segmentId).drawWireframe();
 
     ofTranslate(0, halfArmLength);
 
     ofSetColor(ofColor::grey);
     joints.at(segmentId).draw();
     ofSetColor(ofColor::white);
-    joints.at(segmentId).drawWireframe();
+    //joints.at(segmentId).drawWireframe();
 
     ofPopMatrix();
 
@@ -117,6 +143,8 @@ void ofApp::drawArmSegment(int segmentId){
     ofSetLineWidth(1);
     ofDrawLine(0, halfArmLength, rotationHandleLength, halfArmLength);
     ofTranslate(0, armLength);
+
+    material.end();
 }
 
 void ofApp::drawHead(){
