@@ -58,6 +58,8 @@ void ofApp::setupPrimitives() {
 }
 
 void ofApp::setupLighting() {
+    ofEnableDepthTest();
+
     pointLight1.setDiffuseColor(ofFloatColor(.85, .85, .55));
     pointLight1.setSpecularColor(ofFloatColor(1.f, 1.f, 1.f));
     pointLight1.setPosition(ofGetWidth() * 0.75, ofGetHeight() * 0.25, -20);
