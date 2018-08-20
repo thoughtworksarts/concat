@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxAnimatableFloat.h"
+#include "ofxKinectV2OSC.h"
 #include "ccParser.h"
 
 class ofApp : public ofBaseApp{
@@ -42,4 +43,11 @@ protected:
 
     float lightingHeightAdjustment;
     float lightingDepth;
+
+	ofxKinectV2OSC kinect;
+	Skeleton* skeleton;
+	vector<Skeleton>* skeletons;
+	ofTrueTypeFont smallFont, largeFont;
+
+	BodyRenderer renderer;
 };

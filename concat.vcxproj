@@ -100,9 +100,10 @@
 			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxAnimatable\src</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxAnimatable\src;..\..\..\addons\ofxKinectV2-OSC\src;..\..\..\addons\ofxKinectV2-OSC\src\Body;..\..\..\addons\ofxKinectV2-OSC\src\DataTransform;..\..\..\addons\ofxKinectV2-OSC\src\Draw;..\..\..\addons\ofxOsc\libs;..\..\..\addons\ofxOsc\libs\oscpack;..\..\..\addons\ofxOsc\libs\oscpack\src;..\..\..\addons\ofxOsc\libs\oscpack\src\ip;..\..\..\addons\ofxOsc\libs\oscpack\src\ip\posix;..\..\..\addons\ofxOsc\libs\oscpack\src\ip\win32;..\..\..\addons\ofxOsc\libs\oscpack\src\osc;..\..\..\addons\ofxOsc\src</AdditionalIncludeDirectories>
 			<CompileAs>CompileAsCpp</CompileAs>
 			<ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
+			<PreprocessorDefinitions>OSC_HOST_LITTLE_ENDIAN</PreprocessorDefinitions>
 		</ClCompile>
 		<Link>
 			<GenerateDebugInformation>true</GenerateDebugInformation>
@@ -120,10 +121,11 @@
 			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxAnimatable\src</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxAnimatable\src;..\..\..\addons\ofxKinectV2-OSC\src;..\..\..\addons\ofxKinectV2-OSC\src\Body;..\..\..\addons\ofxKinectV2-OSC\src\DataTransform;..\..\..\addons\ofxKinectV2-OSC\src\Draw;..\..\..\addons\ofxOsc\libs;..\..\..\addons\ofxOsc\libs\oscpack;..\..\..\addons\ofxOsc\libs\oscpack\src;..\..\..\addons\ofxOsc\libs\oscpack\src\ip;..\..\..\addons\ofxOsc\libs\oscpack\src\ip\posix;..\..\..\addons\ofxOsc\libs\oscpack\src\ip\win32;..\..\..\addons\ofxOsc\libs\oscpack\src\osc;..\..\..\addons\ofxOsc\src</AdditionalIncludeDirectories>
 			<CompileAs>CompileAsCpp</CompileAs>
 			<ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
 			<MultiProcessorCompilation>true</MultiProcessorCompilation>
+			<PreprocessorDefinitions>OSC_HOST_LITTLE_ENDIAN</PreprocessorDefinitions>
 		</ClCompile>
 		<Link>
 			<GenerateDebugInformation>true</GenerateDebugInformation>
@@ -140,10 +142,11 @@
 			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
 			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxAnimatable\src</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxAnimatable\src;..\..\..\addons\ofxKinectV2-OSC\src;..\..\..\addons\ofxKinectV2-OSC\src\Body;..\..\..\addons\ofxKinectV2-OSC\src\DataTransform;..\..\..\addons\ofxKinectV2-OSC\src\Draw;..\..\..\addons\ofxOsc\libs;..\..\..\addons\ofxOsc\libs\oscpack;..\..\..\addons\ofxOsc\libs\oscpack\src;..\..\..\addons\ofxOsc\libs\oscpack\src\ip;..\..\..\addons\ofxOsc\libs\oscpack\src\ip\posix;..\..\..\addons\ofxOsc\libs\oscpack\src\ip\win32;..\..\..\addons\ofxOsc\libs\oscpack\src\osc;..\..\..\addons\ofxOsc\src</AdditionalIncludeDirectories>
 			<CompileAs>CompileAsCpp</CompileAs>
 			<ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
 			<MultiProcessorCompilation>true</MultiProcessorCompilation>
+			<PreprocessorDefinitions>OSC_HOST_LITTLE_ENDIAN</PreprocessorDefinitions>
 		</ClCompile>
 		<Link>
 			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -163,9 +166,10 @@
 			<PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
 			<WarningLevel>Level3</WarningLevel>
-			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxAnimatable\src</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxAnimatable\src;..\..\..\addons\ofxKinectV2-OSC\src;..\..\..\addons\ofxKinectV2-OSC\src\Body;..\..\..\addons\ofxKinectV2-OSC\src\DataTransform;..\..\..\addons\ofxKinectV2-OSC\src\Draw;..\..\..\addons\ofxOsc\libs;..\..\..\addons\ofxOsc\libs\oscpack;..\..\..\addons\ofxOsc\libs\oscpack\src;..\..\..\addons\ofxOsc\libs\oscpack\src\ip;..\..\..\addons\ofxOsc\libs\oscpack\src\ip\posix;..\..\..\addons\ofxOsc\libs\oscpack\src\ip\win32;..\..\..\addons\ofxOsc\libs\oscpack\src\osc;..\..\..\addons\ofxOsc\src</AdditionalIncludeDirectories>
 			<CompileAs>CompileAsCpp</CompileAs>
 			<ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
+			<PreprocessorDefinitions>OSC_HOST_LITTLE_ENDIAN</PreprocessorDefinitions>
 		</ClCompile>
 		<Link>
 			<IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -188,6 +192,27 @@
 		<ClCompile Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableOfColor.cpp" />
 		<ClCompile Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableOfPoint.cpp" />
 		<ClCompile Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableQueue.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxKinectV2-OSC\src\Body\Hand.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxKinectV2-OSC\src\Body\Interpreter.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxKinectV2-OSC\src\Body\Joint.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxKinectV2-OSC\src\Body\Skeleton.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxKinectV2-OSC\src\DataTransform\Logger.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxKinectV2-OSC\src\DataTransform\Mapper.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxKinectV2-OSC\src\DataTransform\Parser.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxKinectV2-OSC\src\Draw\BodyRenderer.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxKinectV2-OSC\src\ofxKinectV2OSC.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\src\ofxOscBundle.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\src\ofxOscMessage.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\src\ofxOscParameterSync.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\src\ofxOscReceiver.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\src\ofxOscSender.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\win32\NetworkingUtils.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\win32\UdpSocket.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.cpp" />
+		<ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp" />
 	</ItemGroup>
 	<ItemGroup>
 		<ClInclude Include="src\ofApp.h" />
@@ -197,6 +222,35 @@
 		<ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableOfColor.h" />
 		<ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableOfPoint.h" />
 		<ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableQueue.h" />
+		<ClInclude Include="..\..\..\addons\ofxKinectV2-OSC\src\Body\Hand.h" />
+		<ClInclude Include="..\..\..\addons\ofxKinectV2-OSC\src\Body\Interpreter.h" />
+		<ClInclude Include="..\..\..\addons\ofxKinectV2-OSC\src\Body\Joint.h" />
+		<ClInclude Include="..\..\..\addons\ofxKinectV2-OSC\src\Body\Skeleton.h" />
+		<ClInclude Include="..\..\..\addons\ofxKinectV2-OSC\src\DataTransform\Logger.h" />
+		<ClInclude Include="..\..\..\addons\ofxKinectV2-OSC\src\DataTransform\Mapper.h" />
+		<ClInclude Include="..\..\..\addons\ofxKinectV2-OSC\src\DataTransform\Parser.h" />
+		<ClInclude Include="..\..\..\addons\ofxKinectV2-OSC\src\Draw\BodyRenderer.h" />
+		<ClInclude Include="..\..\..\addons\ofxKinectV2-OSC\src\ofxKinectV2OSC.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOsc.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOscArg.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOscBundle.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOscMessage.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOscParameterSync.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOscReceiver.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\src\ofxOscSender.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\NetworkingUtils.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\PacketListener.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\TimerListener.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\ip\UdpSocket.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\MessageMappingOscPacketListener.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscException.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscHostEndianness.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscPacketListener.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.h" />
+		<ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.h" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

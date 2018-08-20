@@ -25,6 +25,12 @@ void ofApp::setup(){
     setupCurrentAngles();
     setupPrimitives();
     setupLighting();
+
+	smallFont.loadFont("selena.otf", 16);
+	largeFont.loadFont("selena.otf", 48);
+	kinect.setup(12345, smallFont);
+	skeletons = kinect.getSkeletons();
+	renderer.setup(skeletons, largeFont);
 }
 
 void ofApp::setupTargetAngles(){
@@ -74,6 +80,8 @@ void ofApp::setupLighting() {
 }
 
 void ofApp::update(){
+	kinect.update();
+
     if (showLights) {
         lightingHeightAdjustment = ofMap(ofGetMouseY(), 0, ofGetHeight(), -0.25, 0);
         lightingDepth = ofMap(ofGetMouseX(), 0, ofGetWidth(), -200, 200);
@@ -143,6 +151,9 @@ void ofApp::draw(){
     ofRotateZ(currentAngles.at(5).getCurrentValue());
     drawHead();
     ofPopMatrix();
+
+	kinect.drawDebug();
+	renderer.draw();
 }
 
 void ofApp::drawArmSegment(int segmentId){
