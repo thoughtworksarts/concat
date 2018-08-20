@@ -52,7 +52,6 @@ apps/*
 !/bin/data/
 .vs
 *.vcxproj.user
-icon.rc
 
 # XCode
 *.pbxuser
