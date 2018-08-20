@@ -2,7 +2,7 @@
 
 void ccParser::setup(){
     fileName = "coordinates-aug-3.txt";
-    readFile();
+	readFile();
 }
 
 void ccParser::readFile(){

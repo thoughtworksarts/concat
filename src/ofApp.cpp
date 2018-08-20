@@ -97,7 +97,7 @@ void ofApp::update(){
     lights[3].setPosition(ofGetWidth() * 0.75, ofGetHeight() * (0.95 + lightingHeightAdjustment), lightingDepth);
     lights[4].setPosition(ofGetWidth() * 0.5, ofGetHeight() * 0.9, 205);
 
-    if(ofGetFrameNum() % 60 == 0){
+    if(ofGetFrameNum() % 180 == 0){
         incrementTargetArmPosition();
         animateToNewArmPosition();
     }
@@ -144,15 +144,15 @@ void ofApp::draw(){
     ofRotateY(currentAngles.at(0).getCurrentValue());
     ofRotateZ(currentAngles.at(1).getCurrentValue());
     drawArmSegment(1);
-    ofRotateY(currentAngles.at(2).getCurrentValue());
-    ofRotateZ(currentAngles.at(3).getCurrentValue());
+    ofRotateZ(currentAngles.at(2).getCurrentValue());
+    ofRotateY(currentAngles.at(3).getCurrentValue());
     drawArmSegment(2);
-    ofRotateY(currentAngles.at(4).getCurrentValue());
-    ofRotateZ(currentAngles.at(5).getCurrentValue());
+    ofRotateZ(currentAngles.at(4).getCurrentValue());
+    ofRotateY(currentAngles.at(5).getCurrentValue());
     drawHead();
     ofPopMatrix();
 
-	kinect.drawDebug();
+	//kinect.drawDebug();
 	renderer.draw();
 }
 
