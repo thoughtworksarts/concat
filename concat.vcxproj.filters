@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<ClCompile Include="src\ofApp.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\main.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\ccParser.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\main.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\ofApp.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatable.cpp">
+			<Filter>addons\ofxAnimatable\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableFloat.cpp">
+			<Filter>addons\ofxAnimatable\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableOfColor.cpp">
+			<Filter>addons\ofxAnimatable\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableOfPoint.cpp">
+			<Filter>addons\ofxAnimatable\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableQueue.cpp">
+			<Filter>addons\ofxAnimatable\src</Filter>
+		</ClCompile>
+	</ItemGroup>
+	<ItemGroup>
+		<Filter Include="src">
+			<UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons">
+			<UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxAnimatable">
+			<UniqueIdentifier>{76597DE6-6EC6-9B33-AE16-324A}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxAnimatable\src">
+			<UniqueIdentifier>{9A0AF1AC-D8D7-DC08-0B38-3CC3}</UniqueIdentifier>
+		</Filter>
+	</ItemGroup>
+	<ItemGroup>
+		<ClInclude Include="src\ofApp.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="src\ccParser.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="src\ofApp.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatable.h">
+			<Filter>addons\ofxAnimatable\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableFloat.h">
+			<Filter>addons\ofxAnimatable\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableOfColor.h">
+			<Filter>addons\ofxAnimatable\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableOfPoint.h">
+			<Filter>addons\ofxAnimatable\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableQueue.h">
+			<Filter>addons\ofxAnimatable\src</Filter>
+		</ClInclude>
+	</ItemGroup>
+	<ItemGroup>
+		<ResourceCompile Include="icon.rc" />
+	</ItemGroup>
+</Project>
