@@ -1,6 +1,7 @@
 #include "ofApp.h"
 
 void ofApp::setup(){
+    ofToggleFullscreen();
     dataParser.setup();
     robot.setup(dataParser.getTargetAngles());
 
