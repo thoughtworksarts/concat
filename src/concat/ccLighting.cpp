@@ -4,6 +4,7 @@ void ccLighting::setup() {
 	numLights = 5;
 	showLightPositions = false;
     showLighting = true;
+    ofSetSmoothLighting(true);
 
     width = ofGetWidth() * 0.5;
     height = ofGetHeight();
@@ -21,11 +22,6 @@ void ccLighting::setup() {
 void ccLighting::update() {
     if (showLighting) {
         ofEnableLighting();
-        ofSetSmoothLighting(true);
-    }
-    else {
-        ofDisableLighting();
-        ofSetSmoothLighting(false);
     }
 
 	if (showLightPositions) {
@@ -52,6 +48,7 @@ void ccLighting::draw() {
             light.draw();
         }
     }
+    ofDisableLighting();
 }
 
 void ccLighting::toggleLightPositions() {

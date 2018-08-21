@@ -16,6 +16,10 @@ public:
     void keyPressed(int key);
 
 protected:
+    void setupInfoOverlay();
+    string info;
+    ofVec2f infoPosition;
+
     ccParser dataParser;
     ccRobot robot;
     ccLighting lighting;
@@ -24,6 +28,5 @@ protected:
 	Skeleton* skeleton;
 	vector<Skeleton>* skeletons;
 	ofTrueTypeFont smallFont, largeFont;
-
 	BodyRenderer renderer;
 };

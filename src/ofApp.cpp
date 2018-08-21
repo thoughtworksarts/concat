@@ -11,6 +11,8 @@ void ofApp::setup(){
 	kinect.setup(12345, smallFont);
 	skeletons = kinect.getSkeletons();
 	renderer.setup(skeletons, largeFont);
+
+    setupInfoOverlay();
 }
 
 void ofApp::update(){
@@ -26,6 +28,9 @@ void ofApp::draw(){
 
 	//kinect.drawDebug();
 	renderer.draw();
+
+    ofSetColor(ofColor::white);
+    ofDrawBitmapString(info, infoPosition);
 }
 
 void ofApp::keyPressed(int key){
@@ -37,4 +42,14 @@ void ofApp::keyPressed(int key){
     } else if (key == 'l') {
         lighting.toggleLightPositions();
     }
+}
+
+void ofApp::setupInfoOverlay() {
+    info = "";
+    info += "r: reset animation\n";
+    info += "w: toggle wireframes\n";
+    info += "l: toggle lights\n";
+
+    infoPosition.x = ofGetWidth() - 250;
+    infoPosition.y = 100;
 }
