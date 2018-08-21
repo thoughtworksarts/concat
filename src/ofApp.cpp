@@ -1,7 +1,7 @@
 #include "ofApp.h"
 
 void ofApp::setup(){
-    //ofToggleFullscreen();
+    ofToggleFullscreen();
     dataParser.setup();
     robot.setup(dataParser.getTargetAngles());
     lighting.setup();

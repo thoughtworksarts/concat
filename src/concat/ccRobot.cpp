@@ -107,7 +107,7 @@ void ccRobot::animateToNewPosition() {
 }
 
 void ccRobot::setCoordinateSystem() {
-	ofTranslate(ofGetWidth() * 0.30, ofGetHeight() * .80);
+	ofTranslate(ofGetWidth() * 0.75, ofGetHeight(), -400);
 	ofRotateZDeg(180);
 	ofRotateYDeg(180);
 }
