@@ -22,6 +22,7 @@ void ccRobot::setup(vector<vector<float>>& _targetAngles) {
 
 	setupCurrentAngles();
 	setupPrimitives();
+    ofEnableDepthTest();
 }
 
 void ccRobot::update() {

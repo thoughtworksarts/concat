@@ -5,8 +5,6 @@ void ccLighting::setup() {
 	showLightPositions = false;
     showLighting = true;
 
-    ofEnableDepthTest();
-
     for (int i = 0; i < numLights; i++) {
         ofLight light;
         lights.push_back(light);
