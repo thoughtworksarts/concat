@@ -1,6 +1,6 @@
 #include "ccRobot.h"
 
-void ccRobot::setup(vector<vector<float>>& _targetAngles) {
+void ccRobot::setup(const vector<vector<float>>& _targetAngles) {
     targetAngles = _targetAngles;
     currentPositionIndex = 0;
 	numAngles = 6;

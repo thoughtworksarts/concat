@@ -7,7 +7,7 @@
 class ccRobot {
 
 public:
-	void setup(vector<vector<float>>& _targetAngles);
+	void setup(const vector<vector<float>>& _targetAngles);
 	void update();
 	void draw();
     void resetAnimation();
