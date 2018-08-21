@@ -6,8 +6,8 @@ void ofApp::setup(){
     robot.setup(dataParser.getTargetAngles());
     lighting.setup();
 
-	smallFont.loadFont("selena.otf", 16);
-	largeFont.loadFont("selena.otf", 48);
+	smallFont.load("selena.otf", 16);
+	largeFont.load("selena.otf", 48);
 	kinect.setup(12345, smallFont);
 	skeletons = kinect.getSkeletons();
 	renderer.setup(skeletons, largeFont);
