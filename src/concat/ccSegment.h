@@ -13,8 +13,8 @@ public:
 
 protected:
     void calculateSegmentHeight();
-    void drawBox();
     void drawJoint();
+    void drawBox();
     void drawRotationHandle();
 
 	int rotationHandleLength;

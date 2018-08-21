@@ -25,8 +25,8 @@ void ccSegment::draw() {
 	ofFill();
 
 	ofPushMatrix();
-    drawBox();
     drawJoint();
+    drawBox();
 	ofPopMatrix();
 
     drawRotationHandle();
@@ -42,22 +42,7 @@ void ccSegment::calculateSegmentHeight() {
     segmentHeight = box.getHeight() + joint.getRadius() * 2;
 }
 
-void ccSegment::drawBox() {
-    ofTranslate(0, halfBoxHeight);
-    ofSetLineWidth(1);
-
-    if (showWireframes) {
-        ofSetColor(ofColor::white);
-        box.drawWireframe();
-    }
-    else {
-        ofSetColor(ofColor::grey);
-        box.draw();
-    }
-}
-
 void ccSegment::drawJoint() {
-    ofTranslate(0, halfBoxHeight);
     ofSetLineWidth(1);
 
     if (showWireframes) {
@@ -67,6 +52,20 @@ void ccSegment::drawJoint() {
     else {
         ofSetColor(ofColor::grey);
         joint.draw();
+    }
+}
+
+void ccSegment::drawBox() {
+    ofTranslate(0, joint.getRadius() + halfBoxHeight);
+    ofSetLineWidth(1);
+
+    if (showWireframes) {
+        ofSetColor(ofColor::white);
+        box.drawWireframe();
+    }
+    else {
+        ofSetColor(ofColor::grey);
+        box.draw();
     }
 }
 

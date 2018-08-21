@@ -66,7 +66,7 @@ void ccRobot::setupSegments() {
 
     baseSegment.setup(material);
     baseSegment.setBoxSize(400, 100, 400);
-    baseSegment.setJointRadius(100);
+    baseSegment.setJointRadius(0);
 
     lowerSegment.setup(material);
     lowerSegment.setBoxSize(80, 300, 80);
