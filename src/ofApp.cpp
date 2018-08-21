@@ -26,8 +26,12 @@ void ofApp::draw(){
     robot.draw();
     lighting.draw();
 
+	ofPushMatrix();
 	//kinect.drawDebug();
+	ofTranslate(ofGetWidth() *0.25, 0);
 	renderer.draw();
+	ofPopMatrix();
+
 
     ofSetColor(ofColor::white);
     ofDrawBitmapString(info, infoPosition);
