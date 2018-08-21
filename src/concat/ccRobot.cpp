@@ -32,7 +32,7 @@ void ccRobot::draw() {
     lowerSegment.draw();
 
     upperSegment.translateToRotationCenter();
-    ofRotateZDeg(currentAngles.at(2).getCurrentValue());
+    ofRotateZDeg(currentAngles.at(2).getCurrentValue() + 90);
     ofRotateYDeg(currentAngles.at(3).getCurrentValue());
     upperSegment.draw();
 
