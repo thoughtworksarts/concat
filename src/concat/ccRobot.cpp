@@ -4,21 +4,21 @@ void ccRobot::setup(vector<vector<float>>& _targetAngles) {
     targetAngles = _targetAngles;
     showWireframes = false;
 
-	armLength = 200;
+	segmentLength = 200;
 	jointSize = 50;
-	armSegmentThickness = 10;
-	armSegmentLength = armLength - jointSize;
+	segmentBoxThickness = 10;
+	segmentBoxLength = segmentLength - jointSize;
 
 	headLength = 70;
 	rotationHandleLength = 30;
 
-	halfArmLength = armLength * 0.5;
+	halfSegmentLength = segmentLength * 0.5;
 	halfHeadLength = headLength * 0.5;
 	halfJointSize = jointSize * 0.5;
 
-	currentArmPosition = 0;
+	currentPositionIndex = 0;
 	numAngles = 6;
-	numArmSegments = 3;
+	numSegments = 3;
 
 	setupCurrentAngles();
 	setupPrimitives();
@@ -27,8 +27,8 @@ void ccRobot::setup(vector<vector<float>>& _targetAngles) {
 
 void ccRobot::update() {
 	if (ofGetFrameNum() % 60 == 0) {
-		incrementTargetArmPosition();
-		animateToNewArmPosition();
+		incrementTargetPosition();
+		animateToNewPosition();
 	}
 
 	for (int i = 0; i < currentAngles.size(); i++) {
@@ -40,13 +40,13 @@ void ccRobot::draw() {
     ofBackground(ofColor::black);
     ofPushMatrix();
     setCoordinateSystem();
-    drawArmSegment(0);
+    drawSegment(0);
     ofRotateYDeg(currentAngles.at(0).getCurrentValue());
     ofRotateZDeg(currentAngles.at(1).getCurrentValue());
-    drawArmSegment(1);
+    drawSegment(1);
     ofRotateZDeg(currentAngles.at(2).getCurrentValue());
     ofRotateYDeg(currentAngles.at(3).getCurrentValue());
-    drawArmSegment(2);
+    drawSegment(2);
     ofRotateZDeg(currentAngles.at(4).getCurrentValue());
     ofRotateYDeg(currentAngles.at(5).getCurrentValue());
     drawHead();
@@ -54,7 +54,7 @@ void ccRobot::draw() {
 }
 
 void ccRobot::resetAnimation() {
-    currentArmPosition = 0;
+    currentPositionIndex = 0;
 }
 
 void ccRobot::toggleWireframes() {
@@ -73,15 +73,15 @@ void ccRobot::setupCurrentAngles() {
 }
 
 void ccRobot::setupPrimitives() {
-    ofBoxPrimitive armSegment;
-    for (int i = 0; i < numArmSegments; i++) {
-        int thickness = 50 - i * armSegmentThickness;
-        armSegments.push_back(armSegment);
-        armSegments.back().set(thickness, armSegmentLength, thickness);
+    ofBoxPrimitive segmentBox;
+    for (int i = 0; i < numSegments; i++) {
+        int thickness = 50 - i * segmentBoxThickness;
+        segmentBoxes.push_back(segmentBox);
+        segmentBoxes.back().set(thickness, segmentBoxLength, thickness);
     }
 
     ofSpherePrimitive joint;
-    for (int i = 0; i < numArmSegments; i++) {
+    for (int i = 0; i < numSegments; i++) {
         joints.push_back(joint);
         joints.back().setRadius(halfJointSize - 5 * i);
     }
@@ -90,37 +90,37 @@ void ccRobot::setupPrimitives() {
     material.setSpecularColor(ofColor(255, 255, 255, 255));
 }
 
-void ccRobot::incrementTargetArmPosition() {
-	currentArmPosition++;
-	if (currentArmPosition >= targetAngles.size()) {
-		currentArmPosition = 0;
+void ccRobot::incrementTargetPosition() {
+	currentPositionIndex++;
+	if (currentPositionIndex >= targetAngles.size()) {
+		currentPositionIndex = 0;
 	}
 }
 
-void ccRobot::animateToNewArmPosition() {
+void ccRobot::animateToNewPosition() {
 	for (int i = 0; i < currentAngles.size(); i++) {
-		float targetAngle = targetAngles.at(currentArmPosition).at(i);
+		float targetAngle = targetAngles.at(currentPositionIndex).at(i);
 		currentAngles.at(i).animateTo(targetAngle);
 	}
 }
 
-void ccRobot::drawArmSegment(int segmentId) {
+void ccRobot::drawSegment(int segmentId) {
 	material.begin();
 	ofFill();
 
 	ofPushMatrix();
-	ofTranslate(0, halfArmLength);
+	ofTranslate(0, halfSegmentLength);
 
 	if (showWireframes) {
 		ofSetColor(ofColor::white);
-		armSegments.at(segmentId).drawWireframe();
+		segmentBoxes.at(segmentId).drawWireframe();
 	}
 	else {
 		ofSetColor(ofColor::grey);
-		armSegments.at(segmentId).draw();
+        segmentBoxes.at(segmentId).draw();
 	}
 
-	ofTranslate(0, halfArmLength);
+	ofTranslate(0, halfSegmentLength);
 
 	if (showWireframes) {
 		ofSetColor(ofColor::white);
@@ -135,8 +135,8 @@ void ccRobot::drawArmSegment(int segmentId) {
 
 	ofSetColor(ofColor::green);
 	ofSetLineWidth(1);
-	ofDrawLine(0, halfArmLength, rotationHandleLength, halfArmLength);
-	ofTranslate(0, armLength);
+	ofDrawLine(0, halfSegmentLength, rotationHandleLength, halfSegmentLength);
+	ofTranslate(0, segmentLength);
 
 	material.end();
 }

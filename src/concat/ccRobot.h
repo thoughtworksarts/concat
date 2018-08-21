@@ -15,22 +15,23 @@ public:
 protected:
     void setupCurrentAngles();
     void setupPrimitives();
-    void incrementTargetArmPosition();
-    void animateToNewArmPosition();
-    void drawArmSegment(int segmentId);
+    void incrementTargetPosition();
+    void animateToNewPosition();
+    void drawSegment(int segmentId);
     void drawHead();
 	void setCoordinateSystem();
 
-	int numAngles, numArmSegments;
-	int armLength, armSegmentLength, armSegmentThickness, jointSize, halfJointSize, halfArmLength;
+	int numAngles, numSegments;
+    int segmentLength, halfSegmentLength, segmentBoxLength, segmentBoxThickness;
+    int jointSize, halfJointSize;
 	int headLength, halfHeadLength;
 	int rotationHandleLength;
 
 	vector<vector<float>> targetAngles;
 	vector<ofxAnimatableFloat> currentAngles;
-	int currentArmPosition;
+	int currentPositionIndex;
 
-	vector<ofBoxPrimitive> armSegments;
+	vector<ofBoxPrimitive> segmentBoxes;
 	vector<ofSpherePrimitive> joints;
 
 	ofMaterial material;
