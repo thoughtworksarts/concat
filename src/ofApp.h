@@ -5,6 +5,7 @@
 #include "ofxKinectV2OSC.h"
 #include "concat/ccParser.h"
 #include "concat/ccRobot.h"
+#include "concat/ccLighting.h"
 
 class ofApp : public ofBaseApp{
 
@@ -17,6 +18,7 @@ public:
 protected:
     ccParser dataParser;
     ccRobot robot;
+    ccLighting lighting;
 
 	ofxKinectV2OSC kinect;
 	Skeleton* skeleton;

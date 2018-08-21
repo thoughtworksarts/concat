@@ -4,6 +4,7 @@ void ofApp::setup(){
     ofToggleFullscreen();
     dataParser.setup();
     robot.setup(dataParser.getTargetAngles());
+    lighting.setup();
 
 	smallFont.loadFont("selena.otf", 16);
 	largeFont.loadFont("selena.otf", 48);
@@ -15,11 +16,16 @@ void ofApp::setup(){
 void ofApp::update(){
 	kinect.update();
     robot.update();
+    lighting.update();
 }
 
 void ofApp::draw(){
     ofBackground(ofColor::black);
+    ofPushMatrix();
+    //ofTranslate(ofGetWidth() * 0.25, 0);
     robot.draw();
+    lighting.draw();
+    ofPopMatrix();
 
 	//kinect.drawDebug();
 	renderer.draw();
@@ -30,7 +36,8 @@ void ofApp::keyPressed(int key){
         robot.resetAnimation();
     } else if (key == 'w') {
         robot.toggleWireframes();
+        lighting.toggleLighting();
     } else if (key == 'l') {
-        robot.toggleLights();
+        lighting.toggleLightPositions();
     }
 }

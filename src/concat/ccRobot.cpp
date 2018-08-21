@@ -2,6 +2,7 @@
 
 void ccRobot::setup(vector<vector<float>>& _targetAngles) {
     targetAngles = _targetAngles;
+    showWireframes = false;
 
 	armLength = 200;
 	jointSize = 50;
@@ -18,33 +19,12 @@ void ccRobot::setup(vector<vector<float>>& _targetAngles) {
 	currentArmPosition = 0;
 	numAngles = 6;
 	numArmSegments = 3;
-	numLights = 5;
-
-	showWireframes = false;
-	showLights = false;
 
 	setupCurrentAngles();
 	setupPrimitives();
-	setupLighting();
 }
 
 void ccRobot::update() {
-	if (showLights) {
-		lightingHeightAdjustment = ofMap(ofGetMouseY(), 0, ofGetHeight(), -0.25, 0);
-		lightingDepth = ofMap(ofGetMouseX(), 0, ofGetWidth(), -200, 200);
-		cout << "lightingHeightAdjustment = " << lightingHeightAdjustment << endl;
-		cout << "lightingDepth = " << lightingDepth << endl;
-	}
-	else {
-		lightingHeightAdjustment = 0.00130209;
-		lightingDepth = -73.4375;
-	}
-	lights[0].setPosition(ofGetWidth() * 0.25, ofGetHeight() * (0.45 + lightingHeightAdjustment), lightingDepth);
-	lights[1].setPosition(ofGetWidth() * 0.75, ofGetHeight() * (0.45 + lightingHeightAdjustment), lightingDepth);
-	lights[2].setPosition(ofGetWidth() * 0.25, ofGetHeight() * (0.95 + lightingHeightAdjustment), lightingDepth);
-	lights[3].setPosition(ofGetWidth() * 0.75, ofGetHeight() * (0.95 + lightingHeightAdjustment), lightingDepth);
-	lights[4].setPosition(ofGetWidth() * 0.5, ofGetHeight() * 0.9, 205);
-
 	if (ofGetFrameNum() % 60 == 0) {
 		incrementTargetArmPosition();
 		animateToNewArmPosition();
@@ -57,22 +37,6 @@ void ccRobot::update() {
 
 void ccRobot::draw() {
     ofBackground(ofColor::black);
-
-    if (showWireframes) {
-        ofDisableLighting();
-        ofSetSmoothLighting(false);
-    }
-    else {
-        ofEnableLighting();
-        ofSetSmoothLighting(true);
-    }
-
-    if (showLights) {
-        for (const auto& light : lights) {
-            light.draw();
-        }
-    }
-
     ofPushMatrix();
     setCoordinateSystem();
     drawArmSegment(0);
@@ -94,10 +58,6 @@ void ccRobot::resetAnimation() {
 
 void ccRobot::toggleWireframes() {
     showWireframes = !showWireframes;
-}
-
-void ccRobot::toggleLights() {
-    showLights = !showLights;
 }
 
 void ccRobot::setupCurrentAngles() {
@@ -123,18 +83,6 @@ void ccRobot::setupPrimitives() {
     for (int i = 0; i < numArmSegments; i++) {
         joints.push_back(joint);
         joints.back().setRadius(halfJointSize - 5 * i);
-    }
-}
-
-void ccRobot::setupLighting() {
-    ofEnableDepthTest();
-
-    for (int i = 0; i < numLights; i++) {
-        ofLight light;
-        lights.push_back(light);
-        lights.back().setDiffuseColor(ofFloatColor(.85, .85, .55));
-        lights.back().setSpecularColor(ofFloatColor(1.f, 1.f, 1.f));
-        lights.back().enable();
     }
 
     material.setShininess(120);

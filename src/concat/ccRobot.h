@@ -11,19 +11,17 @@ public:
 	void draw();
     void resetAnimation();
     void toggleWireframes();
-    void toggleLights();
 
 protected:
     void setupCurrentAngles();
     void setupPrimitives();
-    void setupLighting();
     void incrementTargetArmPosition();
     void animateToNewArmPosition();
     void drawArmSegment(int segmentId);
     void drawHead();
 	void setCoordinateSystem();
 
-	int numAngles, numArmSegments, numLights;
+	int numAngles, numArmSegments;
 	int armLength, armSegmentLength, armSegmentThickness, jointSize, halfJointSize, halfArmLength;
 	int headLength, halfHeadLength;
 	int rotationHandleLength;
@@ -34,11 +32,7 @@ protected:
 
 	vector<ofBoxPrimitive> armSegments;
 	vector<ofSpherePrimitive> joints;
-	vector<ofLight> lights;
 
 	ofMaterial material;
-	bool showWireframes, showLights;
-
-	float lightingHeightAdjustment;
-	float lightingDepth;
+	bool showWireframes;
 };
