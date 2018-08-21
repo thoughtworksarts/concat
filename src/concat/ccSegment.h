@@ -13,9 +13,12 @@ public:
 
 protected:
     void calculateSegmentHeight();
+    void drawBox();
+    void drawJoint();
+    void drawRotationHandle();
 
 	int rotationHandleLength;
-    float segmentHeight, halfBoxHeight;
+    float segmentHeight, halfBoxWidth, halfBoxHeight;
 
     ofMaterial material;
 	ofBoxPrimitive box;
