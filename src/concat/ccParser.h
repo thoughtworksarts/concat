@@ -6,6 +6,7 @@ class ccParser {
 public:
     void setup();
     void readFile();
+    string getCurrentFileName();
     vector<vector<float>> getTargetAngles();
 
 protected:

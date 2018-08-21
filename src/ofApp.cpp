@@ -11,11 +11,10 @@ void ofApp::setup(){
 	kinect.setup(12345, smallFont);
 	skeletons = kinect.getSkeletons();
 	renderer.setup(skeletons, largeFont);
-
-    setupInfoOverlay();
 }
 
 void ofApp::update(){
+    updateInfoOverlay();
 	kinect.update();
     robot.update();
     lighting.update();
@@ -48,12 +47,14 @@ void ofApp::keyPressed(int key){
     }
 }
 
-void ofApp::setupInfoOverlay() {
+void ofApp::updateInfoOverlay() {
     info = "";
     info += "r: reset animation\n";
     info += "w: toggle wireframes\n";
     info += "l: toggle lights\n";
+    info += "\n";
+    info += "file: " + dataParser.getCurrentFileName();
 
-    infoPosition.x = ofGetWidth() - 250;
-    infoPosition.y = 100;
+    infoPosition.x = ofGetWidth() - 350;
+    infoPosition.y = 60;
 }

@@ -16,7 +16,7 @@ public:
     void keyPressed(int key);
 
 protected:
-    void setupInfoOverlay();
+    void updateInfoOverlay();
     string info;
     ofVec2f infoPosition;
 

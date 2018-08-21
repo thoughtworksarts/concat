@@ -1,8 +1,11 @@
 #include "ofApp.h"
 
 void ccParser::setup(){
-    fileName = "JointValues_CatieSeq1and2FINAL.txt";
-	readFile();
+    ofDirectory dir("./");
+    dir.allowExt("txt");
+    dir.listDir();
+    fileName = dir.getPath(0);
+    readFile();
 }
 
 void ccParser::readFile(){
@@ -13,6 +16,10 @@ void ccParser::readFile(){
     } else {
         loadFileContents(buffer);
     }
+}
+
+string ccParser::getCurrentFileName(){
+    return fileName;
 }
 
 vector<vector<float>> ccParser::getTargetAngles() {
