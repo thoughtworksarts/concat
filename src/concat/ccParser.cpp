@@ -19,21 +19,6 @@ vector<vector<float>> ccParser::getTargetAngles() {
     return targetAngles;
 }
 
-void ccParser::pushToAnglesArray(string line){
-    string toPush = line.substr(3);
-    if (contains(toPush, "/")) {
-        toPush = "-100";
-    }
-    anglesArray.push_back(ofToFloat(toPush));
-}
-
-void ccParser::startNewArray(){
-    if (anglesArray.size() == 6) {
-        targetAngles.push_back(anglesArray);
-        anglesArray.clear();
-    }
-}
-
 void ccParser::loadFileContents(ofBuffer& buffer){
     for (ofBuffer::Line it = buffer.getLines().begin(), end = buffer.getLines().end(); it != end; ++it) {
         string line = *it;
@@ -42,6 +27,21 @@ void ccParser::loadFileContents(ofBuffer& buffer){
             pushToAnglesArray(line);
             startNewArray();
         }
+    }
+}
+
+void ccParser::pushToAnglesArray(string line){
+    string toPush = line.substr(3);
+    if (contains(toPush, "/")) {
+        toPush = ofToString(targetAngles.back().at(anglesArray.size()));
+    }
+    anglesArray.push_back(ofToFloat(toPush));
+}
+
+void ccParser::startNewArray(){
+    if (anglesArray.size() == 6) {
+        targetAngles.push_back(anglesArray);
+        anglesArray.clear();
     }
 }
 

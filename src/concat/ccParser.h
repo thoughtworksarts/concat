@@ -9,9 +9,9 @@ public:
     vector<vector<float>> getTargetAngles();
 
 protected:
+    void loadFileContents(ofBuffer& buffer);
     void pushToAnglesArray(string line);
     void startNewArray();
-    void loadFileContents(ofBuffer& buffer);
     bool contains(string haystack, string needle);
 
     string fileName;
