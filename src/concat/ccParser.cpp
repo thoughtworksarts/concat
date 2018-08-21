@@ -1,8 +1,7 @@
 #include "ofApp.h"
 
 void ccParser::setup(){
-    fileName = "test-slash-syntax.txt";
-    //fileName = "JointValues_CatieSeq1and2FINAL.txt";
+    fileName = "JointValues_CatieSeq1and2FINAL.txt";
 	readFile();
 }
 
