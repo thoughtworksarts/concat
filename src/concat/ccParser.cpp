@@ -1,14 +1,12 @@
 #include "ofApp.h"
 
 void ccParser::setup(){
-    ofDirectory dir("./");
-    dir.allowExt("txt");
-    dir.listDir();
-    fileName = dir.getPath(0);
+    fileIndex = 0;
     readFile();
 }
 
 void ccParser::readFile(){
+    loadFileNameFromIndex();
     ofBuffer buffer = ofBufferFromFile(fileName);
 
     if (!buffer.size()) {
@@ -16,6 +14,22 @@ void ccParser::readFile(){
     } else {
         loadFileContents(buffer);
     }
+}
+
+void ccParser::loadPreviousFile(){
+    fileIndex--;
+    if(fileIndex < 0){
+        fileIndex = numFiles - 1;
+    }
+    readFile();
+}
+
+void ccParser::loadNextFile(){
+    fileIndex++;
+    if(fileIndex >= numFiles){
+        fileIndex = 0;
+    }
+    readFile();
 }
 
 string ccParser::getCurrentFileName(){
@@ -26,7 +40,16 @@ vector<vector<float>> ccParser::getTargetAngles() {
     return targetAngles;
 }
 
+void ccParser::loadFileNameFromIndex(){
+    ofDirectory dir("./");
+    dir.allowExt("txt");
+    dir.listDir();
+    fileName = dir.getPath(fileIndex);
+    numFiles = dir.size();
+}
+
 void ccParser::loadFileContents(ofBuffer& buffer){
+    targetAngles.clear();
     for (ofBuffer::Line it = buffer.getLines().begin(), end = buffer.getLines().end(); it != end; ++it) {
         string line = *it;
 

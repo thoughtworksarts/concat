@@ -44,6 +44,12 @@ void ofApp::keyPressed(int key){
         lighting.toggleLighting();
     } else if (key == 'l') {
         lighting.toggleLightPositions();
+    } else if (key == OF_KEY_LEFT) {
+        dataParser.loadPreviousFile();
+        robot.newPositionSet(dataParser.getTargetAngles());
+    } else if (key == OF_KEY_RIGHT) {
+        dataParser.loadNextFile();
+        robot.newPositionSet(dataParser.getTargetAngles());
     }
 }
 

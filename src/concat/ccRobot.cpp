@@ -44,6 +44,11 @@ void ccRobot::draw() {
     ofPopMatrix();
 }
 
+void ccRobot::newPositionSet(const vector<vector<float>>& _targetAngles) {
+    targetAngles = _targetAngles;
+    currentPositionIndex = 0;
+}
+
 void ccRobot::resetAnimation() {
     currentPositionIndex = 0;
 }
