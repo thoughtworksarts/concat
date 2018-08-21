@@ -6,6 +6,7 @@ class ccSegment {
 
 public:
 	void setup(ofMaterial& _material);
+    void translateToRotationCenter();
 	void draw();
     void setBoxSize(float width, float height, float depth);
     void setJointRadius(float radius);
@@ -17,7 +18,6 @@ protected:
     void drawBox();
     void drawRotationHandle();
 
-	int rotationHandleLength;
     float segmentHeight, halfBoxWidth, halfBoxHeight;
 
     ofMaterial material;

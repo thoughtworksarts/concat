@@ -26,15 +26,21 @@ void ccRobot::draw() {
     ofPushMatrix();
     setCoordinateSystem();
     baseSegment.draw();
+
     ofRotateYDeg(currentAngles.at(0).getCurrentValue());
     ofRotateZDeg(currentAngles.at(1).getCurrentValue());
     lowerSegment.draw();
+
+    upperSegment.translateToRotationCenter();
     ofRotateZDeg(currentAngles.at(2).getCurrentValue());
     ofRotateYDeg(currentAngles.at(3).getCurrentValue());
     upperSegment.draw();
+
+    headSegment.translateToRotationCenter();
     ofRotateZDeg(currentAngles.at(4).getCurrentValue());
     ofRotateYDeg(currentAngles.at(5).getCurrentValue());
     headSegment.draw();
+
     ofPopMatrix();
 }
 
@@ -65,20 +71,20 @@ void ccRobot::setupSegments() {
     material.setSpecularColor(ofColor(255, 255, 255, 255));
 
     baseSegment.setup(material);
-    baseSegment.setBoxSize(400, 100, 400);
     baseSegment.setJointRadius(0);
+    baseSegment.setBoxSize(500, 100, 500);
 
     lowerSegment.setup(material);
-    lowerSegment.setBoxSize(80, 300, 80);
-    lowerSegment.setJointRadius(60);
+    lowerSegment.setJointRadius(100);
+    lowerSegment.setBoxSize(90, 360, 90);
 
     upperSegment.setup(material);
-    upperSegment.setBoxSize(80, 300, 80);
-    upperSegment.setJointRadius(60);
+    upperSegment.setJointRadius(50);
+    upperSegment.setBoxSize(70, 240, 70);
 
     headSegment.setup(material);
-    headSegment.setBoxSize(80, 300, 80);
-    headSegment.setJointRadius(60);
+    headSegment.setJointRadius(35);
+    headSegment.setBoxSize(30, 100, 30);
 }
 
 void ccRobot::incrementTargetPosition() {
