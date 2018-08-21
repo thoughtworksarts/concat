@@ -41,14 +41,14 @@ void ccRobot::draw() {
     ofPushMatrix();
     setCoordinateSystem();
     drawArmSegment(0);
-    ofRotateY(currentAngles.at(0).getCurrentValue());
-    ofRotateZ(currentAngles.at(1).getCurrentValue());
+    ofRotateYDeg(currentAngles.at(0).getCurrentValue());
+    ofRotateZDeg(currentAngles.at(1).getCurrentValue());
     drawArmSegment(1);
-    ofRotateZ(currentAngles.at(2).getCurrentValue());
-    ofRotateY(currentAngles.at(3).getCurrentValue());
+    ofRotateZDeg(currentAngles.at(2).getCurrentValue());
+    ofRotateYDeg(currentAngles.at(3).getCurrentValue());
     drawArmSegment(2);
-    ofRotateZ(currentAngles.at(4).getCurrentValue());
-    ofRotateY(currentAngles.at(5).getCurrentValue());
+    ofRotateZDeg(currentAngles.at(4).getCurrentValue());
+    ofRotateYDeg(currentAngles.at(5).getCurrentValue());
     drawHead();
     ofPopMatrix();
 }
@@ -153,6 +153,6 @@ void ccRobot::drawHead() {
 
 void ccRobot::setCoordinateSystem() {
 	ofTranslate(ofGetWidth() * 0.75, ofGetHeight());
-	ofRotateZ(180);
-	ofRotateY(180);
+	ofRotateZDeg(180);
+	ofRotateYDeg(180);
 }
