@@ -3,15 +3,18 @@
 #include "ofMain.h"
 
 class ccParser {
-    public:
+public:
     void setup();
     void readFile();
     vector<vector<float>> getTargetAngles();
 
-    protected:
+protected:
+    void pushToAnglesArray(string line);
+    void startNewArray();
+    void loadFileContents(ofBuffer& buffer);
+    bool contains(string haystack, string needle);
+
     string fileName;
     vector<vector<float>> targetAngles;
     vector<float> anglesArray;
-
-    void loadFileContents(ofBuffer& buffer);
 };
