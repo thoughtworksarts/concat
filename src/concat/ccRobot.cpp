@@ -27,7 +27,7 @@ void ccRobot::draw() {
     setCoordinateSystem();
     baseSegment.draw();
 
-    ofRotateYDeg(currentAngles.at(0).getCurrentValue());
+    ofRotateYDeg(currentAngles.at(0).getCurrentValue() - 90);
     ofRotateZDeg(currentAngles.at(1).getCurrentValue());
     lowerSegment.draw();
 
@@ -102,7 +102,7 @@ void ccRobot::animateToNewPosition() {
 }
 
 void ccRobot::setCoordinateSystem() {
-	ofTranslate(ofGetWidth() * 0.75, ofGetHeight());
+	ofTranslate(ofGetWidth() * 0.30, ofGetHeight() * .80);
 	ofRotateZDeg(180);
 	ofRotateYDeg(180);
 }
