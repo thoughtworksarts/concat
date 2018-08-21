@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxAnimatableFloat.h"
+#include "ccSegment.h"
 
 class ccRobot {
 
@@ -14,26 +15,19 @@ public:
 
 protected:
     void setupCurrentAngles();
-    void setupPrimitives();
+    void setupSegments();
     void incrementTargetPosition();
     void animateToNewPosition();
-    void drawSegment(int segmentId);
-    void drawHead();
 	void setCoordinateSystem();
 
-	int numAngles, numSegments;
-    int segmentLength, halfSegmentLength, segmentBoxLength, segmentBoxThickness;
-    int jointSize, halfJointSize;
-	int headLength, halfHeadLength;
-	int rotationHandleLength;
-
+	int numAngles;
 	vector<vector<float>> targetAngles;
 	vector<ofxAnimatableFloat> currentAngles;
 	int currentPositionIndex;
 
-	vector<ofBoxPrimitive> segmentBoxes;
-	vector<ofSpherePrimitive> joints;
+    vector<ccSegment> segments;
+    ccSegment baseSegment, headSegment;
+    ccSegment lowerSegment, upperSegment;
 
 	ofMaterial material;
-	bool showWireframes;
 };

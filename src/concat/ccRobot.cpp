@@ -2,26 +2,11 @@
 
 void ccRobot::setup(vector<vector<float>>& _targetAngles) {
     targetAngles = _targetAngles;
-    showWireframes = false;
-
-	segmentLength = 200;
-	jointSize = 50;
-	segmentBoxThickness = 10;
-	segmentBoxLength = segmentLength - jointSize;
-
-	headLength = 70;
-	rotationHandleLength = 30;
-
-	halfSegmentLength = segmentLength * 0.5;
-	halfHeadLength = headLength * 0.5;
-	halfJointSize = jointSize * 0.5;
-
-	currentPositionIndex = 0;
+    currentPositionIndex = 0;
 	numAngles = 6;
-	numSegments = 3;
 
 	setupCurrentAngles();
-	setupPrimitives();
+	setupSegments();
     ofEnableDepthTest();
 }
 
@@ -40,16 +25,16 @@ void ccRobot::draw() {
     ofBackground(ofColor::black);
     ofPushMatrix();
     setCoordinateSystem();
-    drawSegment(0);
+    baseSegment.draw();
     ofRotateYDeg(currentAngles.at(0).getCurrentValue());
     ofRotateZDeg(currentAngles.at(1).getCurrentValue());
-    drawSegment(1);
+    lowerSegment.draw();
     ofRotateZDeg(currentAngles.at(2).getCurrentValue());
     ofRotateYDeg(currentAngles.at(3).getCurrentValue());
-    drawSegment(2);
+    upperSegment.draw();
     ofRotateZDeg(currentAngles.at(4).getCurrentValue());
     ofRotateYDeg(currentAngles.at(5).getCurrentValue());
-    drawHead();
+    headSegment.draw();
     ofPopMatrix();
 }
 
@@ -58,7 +43,9 @@ void ccRobot::resetAnimation() {
 }
 
 void ccRobot::toggleWireframes() {
-    showWireframes = !showWireframes;
+    for (auto segment : segments) {
+        segment.toggleWireframes();
+    }
 }
 
 void ccRobot::setupCurrentAngles() {
@@ -72,22 +59,34 @@ void ccRobot::setupCurrentAngles() {
     }
 }
 
-void ccRobot::setupPrimitives() {
-    ofBoxPrimitive segmentBox;
-    for (int i = 0; i < numSegments; i++) {
-        int thickness = 50 - i * segmentBoxThickness;
-        segmentBoxes.push_back(segmentBox);
-        segmentBoxes.back().set(thickness, segmentBoxLength, thickness);
-    }
-
-    ofSpherePrimitive joint;
-    for (int i = 0; i < numSegments; i++) {
-        joints.push_back(joint);
-        joints.back().setRadius(halfJointSize - 5 * i);
-    }
-
+void ccRobot::setupSegments() {
     material.setShininess(120);
     material.setSpecularColor(ofColor(255, 255, 255, 255));
+
+    baseSegment.setup(material);
+    baseSegment.setBoxSize(400, 100, 400);
+    baseSegment.setJointRadius(100);
+    segments.push_back(baseSegment);
+
+    lowerSegment.setup(material);
+    lowerSegment.setBoxSize(80, 300, 80);
+    lowerSegment.setJointRadius(60);
+    segments.push_back(lowerSegment);
+
+    upperSegment.setup(material);
+    upperSegment.setBoxSize(80, 300, 80);
+    upperSegment.setJointRadius(60);
+    segments.push_back(upperSegment);
+
+    upperSegment.setup(material);
+    upperSegment.setBoxSize(80, 300, 80);
+    upperSegment.setJointRadius(60);
+    segments.push_back(upperSegment);
+
+    headSegment.setup(material);
+    headSegment.setBoxSize(80, 300, 80);
+    headSegment.setJointRadius(60);
+    segments.push_back(headSegment);
 }
 
 void ccRobot::incrementTargetPosition() {
@@ -102,53 +101,6 @@ void ccRobot::animateToNewPosition() {
 		float targetAngle = targetAngles.at(currentPositionIndex).at(i);
 		currentAngles.at(i).animateTo(targetAngle);
 	}
-}
-
-void ccRobot::drawSegment(int segmentId) {
-	material.begin();
-	ofFill();
-
-	ofPushMatrix();
-	ofTranslate(0, halfSegmentLength);
-
-	if (showWireframes) {
-		ofSetColor(ofColor::white);
-		segmentBoxes.at(segmentId).drawWireframe();
-	}
-	else {
-		ofSetColor(ofColor::grey);
-        segmentBoxes.at(segmentId).draw();
-	}
-
-	ofTranslate(0, halfSegmentLength);
-
-	if (showWireframes) {
-		ofSetColor(ofColor::white);
-		joints.at(segmentId).drawWireframe();
-	}
-	else {
-		ofSetColor(ofColor::grey);
-		joints.at(segmentId).draw();
-	}
-
-	ofPopMatrix();
-
-	ofSetColor(ofColor::green);
-	ofSetLineWidth(1);
-	ofDrawLine(0, halfSegmentLength, rotationHandleLength, halfSegmentLength);
-	ofTranslate(0, segmentLength);
-
-	material.end();
-}
-
-void ccRobot::drawHead() {
-	ofSetColor(ofColor::wheat);
-	ofSetLineWidth(2);
-	ofDrawLine(0, 0, 0, headLength);
-	ofSetColor(ofColor::red);
-	ofSetLineWidth(1);
-	ofDrawLine(0, halfHeadLength, rotationHandleLength, halfHeadLength);
-	ofTranslate(0, headLength);
 }
 
 void ccRobot::setCoordinateSystem() {

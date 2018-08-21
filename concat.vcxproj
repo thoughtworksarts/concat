@@ -187,6 +187,7 @@
     <ClCompile Include="src\concat\ccLighting.cpp" />
     <ClCompile Include="src\concat\ccParser.cpp" />
     <ClCompile Include="src\concat\ccRobot.cpp" />
+    <ClCompile Include="src\concat\ccSegment.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatable.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="src\concat\ccLighting.h" />
     <ClInclude Include="src\concat\ccParser.h" />
     <ClInclude Include="src\concat\ccRobot.h" />
+    <ClInclude Include="src\concat\ccSegment.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatable.h" />
     <ClInclude Include="..\..\..\addons\ofxAnimatable\src\ofxAnimatableFloat.h" />
