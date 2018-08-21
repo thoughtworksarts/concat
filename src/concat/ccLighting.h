@@ -18,4 +18,6 @@ protected:
 
 	float lightingHeightAdjustment;
 	float lightingDepth;
+
+    int width, height, xPosition;
 };

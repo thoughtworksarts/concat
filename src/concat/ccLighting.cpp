@@ -5,6 +5,10 @@ void ccLighting::setup() {
 	showLightPositions = false;
     showLighting = true;
 
+    width = ofGetWidth() * 0.5;
+    height = ofGetHeight();
+    xPosition = ofGetWidth() * 0.5 + 1;
+
     for (int i = 0; i < numLights; i++) {
         ofLight light;
         lights.push_back(light);
@@ -34,11 +38,11 @@ void ccLighting::update() {
 		lightingHeightAdjustment = 0.00130209;
 		lightingDepth = -73.4375;
 	}
-	lights[0].setPosition(ofGetWidth() * 0.25, ofGetHeight() * (0.45 + lightingHeightAdjustment), lightingDepth);
-	lights[1].setPosition(ofGetWidth() * 0.75, ofGetHeight() * (0.45 + lightingHeightAdjustment), lightingDepth);
-	lights[2].setPosition(ofGetWidth() * 0.25, ofGetHeight() * (0.95 + lightingHeightAdjustment), lightingDepth);
-	lights[3].setPosition(ofGetWidth() * 0.75, ofGetHeight() * (0.95 + lightingHeightAdjustment), lightingDepth);
-	lights[4].setPosition(ofGetWidth() * 0.5, ofGetHeight() * 0.9, 205);
+	lights[0].setPosition(xPosition + width * 0.25, height * (0.45 + lightingHeightAdjustment), lightingDepth);
+	lights[1].setPosition(xPosition + width * 0.75, height * (0.45 + lightingHeightAdjustment), lightingDepth);
+	lights[2].setPosition(xPosition + width * 0.25, height * (0.95 + lightingHeightAdjustment), lightingDepth);
+	lights[3].setPosition(xPosition + width * 0.75, height * (0.95 + lightingHeightAdjustment), lightingDepth);
+	lights[4].setPosition(xPosition + width * 0.5, height * 0.9, 205);
 
 }
 

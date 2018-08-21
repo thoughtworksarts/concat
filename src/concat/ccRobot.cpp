@@ -152,7 +152,7 @@ void ccRobot::drawHead() {
 }
 
 void ccRobot::setCoordinateSystem() {
-	ofTranslate(ofGetWidth() * 0.5, ofGetHeight());
+	ofTranslate(ofGetWidth() * 0.75, ofGetHeight());
 	ofRotateZ(180);
 	ofRotateY(180);
 }
