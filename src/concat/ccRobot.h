@@ -25,7 +25,6 @@ protected:
 	vector<ofxAnimatableFloat> currentAngles;
 	int currentPositionIndex;
 
-    vector<ccSegment> segments;
     ccSegment baseSegment, headSegment;
     ccSegment lowerSegment, upperSegment;
 

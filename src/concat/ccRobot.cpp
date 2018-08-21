@@ -43,9 +43,10 @@ void ccRobot::resetAnimation() {
 }
 
 void ccRobot::toggleWireframes() {
-    for (auto segment : segments) {
-        segment.toggleWireframes();
-    }
+    baseSegment.toggleWireframes();
+    lowerSegment.toggleWireframes();
+    upperSegment.toggleWireframes();
+    headSegment.toggleWireframes();
 }
 
 void ccRobot::setupCurrentAngles() {
@@ -66,27 +67,18 @@ void ccRobot::setupSegments() {
     baseSegment.setup(material);
     baseSegment.setBoxSize(400, 100, 400);
     baseSegment.setJointRadius(100);
-    segments.push_back(baseSegment);
 
     lowerSegment.setup(material);
     lowerSegment.setBoxSize(80, 300, 80);
     lowerSegment.setJointRadius(60);
-    segments.push_back(lowerSegment);
 
     upperSegment.setup(material);
     upperSegment.setBoxSize(80, 300, 80);
     upperSegment.setJointRadius(60);
-    segments.push_back(upperSegment);
-
-    upperSegment.setup(material);
-    upperSegment.setBoxSize(80, 300, 80);
-    upperSegment.setJointRadius(60);
-    segments.push_back(upperSegment);
 
     headSegment.setup(material);
     headSegment.setBoxSize(80, 300, 80);
     headSegment.setJointRadius(60);
-    segments.push_back(headSegment);
 }
 
 void ccRobot::incrementTargetPosition() {
