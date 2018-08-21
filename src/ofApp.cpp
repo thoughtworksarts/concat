@@ -21,11 +21,8 @@ void ofApp::update(){
 
 void ofApp::draw(){
     ofBackground(ofColor::black);
-    ofPushMatrix();
-    //ofTranslate(ofGetWidth() * 0.25, 0);
     robot.draw();
     lighting.draw();
-    ofPopMatrix();
 
 	//kinect.drawDebug();
 	renderer.draw();
