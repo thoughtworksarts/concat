@@ -44,7 +44,10 @@ void ccParser::loadFileNameFromIndex(){
     ofDirectory dir("./");
     dir.allowExt("txt");
     dir.listDir();
-    fileName = dir.getPath(fileIndex);
+    fileName = dir.getPath(fileIndex).substr(2);
+    if (fileName.substr(0, 1) == "\\") {
+        fileName = fileName.substr(1);
+    }
     numFiles = dir.size();
 }
 
