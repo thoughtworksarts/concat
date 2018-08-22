@@ -29,6 +29,6 @@ void ccKinect::drawSkeletons() {
     ofPushMatrix();
     //kinect.drawDebug();
     ofTranslate(ofGetWidth() * 0.25, 0);
-    renderer.draw();
+    renderer.drawSkeleton(kinect.getNearestSkeleton());
     ofPopMatrix();
 }
