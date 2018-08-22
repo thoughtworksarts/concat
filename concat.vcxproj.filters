@@ -91,9 +91,6 @@
     <ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClCompile>
-    <ClCompile Include="src\concat\ccParser.cpp">
-      <Filter>src\concat</Filter>
-    </ClCompile>
     <ClCompile Include="src\concat\ccRobot.cpp">
       <Filter>src\concat</Filter>
     </ClCompile>
@@ -105,6 +102,12 @@
     </ClCompile>
     <ClCompile Include="src\concat\ccKinect.cpp">
       <Filter>src\concat</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\ccClock.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\ccParser.cpp">
+      <Filter>src\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +164,9 @@
     </Filter>
     <Filter Include="src\concat">
       <UniqueIdentifier>{e4cd9a0d-88a7-46b1-a7dc-46d8e8666100}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\util">
+      <UniqueIdentifier>{9bc61b2a-b9ab-40a5-bb18-326b6b56421a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -272,9 +278,6 @@
     <ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClInclude>
-    <ClInclude Include="src\concat\ccParser.h">
-      <Filter>src\concat</Filter>
-    </ClInclude>
     <ClInclude Include="src\concat\ccRobot.h">
       <Filter>src\concat</Filter>
     </ClInclude>
@@ -286,6 +289,12 @@
     </ClInclude>
     <ClInclude Include="src\concat\ccKinect.h">
       <Filter>src\concat</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\ccClock.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\ccParser.h">
+      <Filter>src\util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -186,7 +186,6 @@
   <ItemGroup>
     <ClCompile Include="src\concat\ccKinect.cpp" />
     <ClCompile Include="src\concat\ccLighting.cpp" />
-    <ClCompile Include="src\concat\ccParser.cpp" />
     <ClCompile Include="src\concat\ccRobot.cpp" />
     <ClCompile Include="src\concat\ccSegment.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -217,11 +216,12 @@
     <ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.cpp" />
     <ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.cpp" />
     <ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp" />
+    <ClCompile Include="src\util\ccClock.cpp" />
+    <ClCompile Include="src\util\ccParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\concat\ccKinect.h" />
     <ClInclude Include="src\concat\ccLighting.h" />
-    <ClInclude Include="src\concat\ccParser.h" />
     <ClInclude Include="src\concat\ccRobot.h" />
     <ClInclude Include="src\concat\ccSegment.h" />
     <ClInclude Include="src\ofApp.h" />
@@ -259,6 +259,8 @@
     <ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.h" />
     <ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.h" />
     <ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.h" />
+    <ClInclude Include="src\util\ccClock.h" />
+    <ClInclude Include="src\util\ccParser.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
