@@ -49,6 +49,7 @@ void ofApp::updateInfoOverlay() {
     info += "r: reset animation\n";
     info += "w: toggle wireframes\n";
     info += "l: toggle lights\n";
+    info += "SPACE: start playing\n";
     info += "\n";
     info += "file: " + dataParser.getCurrentFileName();
 
