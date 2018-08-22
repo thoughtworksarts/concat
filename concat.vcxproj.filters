@@ -103,6 +103,9 @@
     <ClCompile Include="src\concat\ccSegment.cpp">
       <Filter>src\concat</Filter>
     </ClCompile>
+    <ClCompile Include="src\concat\ccKinect.cpp">
+      <Filter>src\concat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -279,6 +282,9 @@
       <Filter>src\concat</Filter>
     </ClInclude>
     <ClInclude Include="src\concat\ccSegment.h">
+      <Filter>src\concat</Filter>
+    </ClInclude>
+    <ClInclude Include="src\concat\ccKinect.h">
       <Filter>src\concat</Filter>
     </ClInclude>
   </ItemGroup>

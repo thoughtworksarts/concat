@@ -5,12 +5,7 @@ void ofApp::setup(){
     dataParser.setup();
     robot.setup(dataParser.getTargetAngles());
     lighting.setup();
-
-	smallFont.load("selena.otf", 16);
-	largeFont.load("selena.otf", 48);
-	kinect.setup(12345, smallFont);
-	skeletons = kinect.getSkeletons();
-	renderer.setup(skeletons, largeFont);
+    kinect.setup();
 }
 
 void ofApp::update(){
@@ -24,13 +19,7 @@ void ofApp::draw(){
     ofBackground(ofColor::black);
     robot.draw();
     lighting.draw();
-
-	ofPushMatrix();
-	//kinect.drawDebug();
-	ofTranslate(ofGetWidth() *0.25, 0);
-	renderer.draw();
-	ofPopMatrix();
-
+    kinect.draw();
 
     ofSetColor(ofColor::white);
     ofDrawBitmapString(info, infoPosition);

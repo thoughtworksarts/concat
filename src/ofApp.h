@@ -1,11 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxAnimatableFloat.h"
-#include "ofxKinectV2OSC.h"
 #include "concat/ccParser.h"
 #include "concat/ccRobot.h"
 #include "concat/ccLighting.h"
+#include "concat/ccKinect.h"
 
 class ofApp : public ofBaseApp{
 
@@ -23,10 +22,5 @@ protected:
     ccParser dataParser;
     ccRobot robot;
     ccLighting lighting;
-
-	ofxKinectV2OSC kinect;
-	Skeleton* skeleton;
-	vector<Skeleton>* skeletons;
-	ofTrueTypeFont smallFont, largeFont;
-	BodyRenderer renderer;
+    ccKinect kinect;
 };
