@@ -5,6 +5,7 @@ void ccRobot::setup(const vector<vector<float>>& _targetAngles) {
     currentPositionIndex = 0;
 	numAngles = 6;
     playing = false;
+    previousMod = 1000;
 
 	setupCurrentAngles();
 	setupSegments();
@@ -13,7 +14,7 @@ void ccRobot::setup(const vector<vector<float>>& _targetAngles) {
 
 void ccRobot::update() {
     if (playing) {
-        if (ofGetFrameNum() % 60 == 0) {
+        if (oneSecondHasPassed()) {
             incrementTargetPosition();
             animateToIndexPosition();
         }
@@ -49,6 +50,7 @@ void ccRobot::draw() {
 
 void ccRobot::togglePlaying() {
     playing = !playing;
+    ofResetElapsedTimeCounter();
 }
 
 void ccRobot::newPositionSet(const vector<vector<float>>& _targetAngles) {
@@ -86,18 +88,18 @@ void ccRobot::setupSegments() {
 
     baseSegment.setup(material);
     baseSegment.setJointRadius(0);
-    baseSegment.setBoxSize(1200, 75, 1200);
+    baseSegment.setBoxSize(800, 50, 800);
 
     lowerSegment.setup(material);
-    lowerSegment.setJointRadius(200);
-    lowerSegment.setBoxSize(130, 640, 130);
+    lowerSegment.setJointRadius(100);
+    lowerSegment.setBoxSize(90, 460, 90);
 
     upperSegment.setup(material);
-    upperSegment.setJointRadius(75);
-    upperSegment.setBoxSize(100, 520, 100);
+    upperSegment.setJointRadius(50);
+    upperSegment.setBoxSize(70, 340, 70);
 
     headSegment.setup(material);
-    headSegment.setJointRadius(60);
+    headSegment.setJointRadius(35);
     headSegment.setBoxSize(30, 100, 30);
 }
 
@@ -126,4 +128,12 @@ void ccRobot::setCoordinateSystem() {
 	ofTranslate(ofGetWidth() * 0.75, ofGetHeight(), -400);
 	ofRotateZDeg(180);
 	ofRotateYDeg(180);
+}
+
+bool ccRobot::oneSecondHasPassed() {
+    uint64_t elapsed = ofGetElapsedTimeMillis();
+    int currentMod = elapsed % 1000;
+    bool returnValue = currentMod < previousMod;
+    previousMod = currentMod;
+    return returnValue;
 }

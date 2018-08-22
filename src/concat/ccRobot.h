@@ -22,6 +22,7 @@ protected:
     void animateToIndexPosition();
     void resetToIndexPosition();
 	void setCoordinateSystem();
+    bool oneSecondHasPassed();
 
 	int numAngles;
 	vector<vector<float>> targetAngles;
@@ -33,4 +34,5 @@ protected:
 
 	ofMaterial material;
     bool playing;
+    int previousMod;
 };
