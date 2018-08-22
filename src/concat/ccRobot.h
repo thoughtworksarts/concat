@@ -10,6 +10,7 @@ public:
 	void setup(const vector<vector<float>>& _targetAngles);
 	void update();
     void draw();
+    void startPlaying();
     void newPositionSet(const vector<vector<float>>& _targetAngles);
     void resetAnimation();
     void toggleWireframes();
@@ -18,7 +19,8 @@ protected:
     void setupCurrentAngles();
     void setupSegments();
     void incrementTargetPosition();
-    void animateToNewPosition();
+    void animateToIndexPosition();
+    void resetToIndexPosition();
 	void setCoordinateSystem();
 
 	int numAngles;
@@ -30,4 +32,5 @@ protected:
     ccSegment lowerSegment, upperSegment;
 
 	ofMaterial material;
+    bool playing;
 };

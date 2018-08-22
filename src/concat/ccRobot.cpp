@@ -4,6 +4,7 @@ void ccRobot::setup(const vector<vector<float>>& _targetAngles) {
     targetAngles = _targetAngles;
     currentPositionIndex = 0;
 	numAngles = 6;
+    playing = false;
 
 	setupCurrentAngles();
 	setupSegments();
@@ -11,14 +12,16 @@ void ccRobot::setup(const vector<vector<float>>& _targetAngles) {
 }
 
 void ccRobot::update() {
-	if (ofGetFrameNum() % 60 == 0) {
-		incrementTargetPosition();
-		animateToNewPosition();
-	}
+    if (playing) {
+        if (ofGetFrameNum() % 60 == 0) {
+            incrementTargetPosition();
+            animateToIndexPosition();
+        }
 
-	for (int i = 0; i < currentAngles.size(); i++) {
-		currentAngles.at(i).update(ofGetLastFrameTime());
-	}
+        for (int i = 0; i < currentAngles.size(); i++) {
+            currentAngles.at(i).update(ofGetLastFrameTime());
+        }
+    }
 }
 
 void ccRobot::draw() {
@@ -44,6 +47,10 @@ void ccRobot::draw() {
     ofPopMatrix();
 }
 
+void ccRobot::startPlaying() {
+    playing = true;
+}
+
 void ccRobot::newPositionSet(const vector<vector<float>>& _targetAngles) {
     targetAngles = _targetAngles;
     currentPositionIndex = 0;
@@ -51,6 +58,8 @@ void ccRobot::newPositionSet(const vector<vector<float>>& _targetAngles) {
 
 void ccRobot::resetAnimation() {
     currentPositionIndex = 0;
+    resetToIndexPosition();
+    playing = false;
 }
 
 void ccRobot::toggleWireframes() {
@@ -99,11 +108,18 @@ void ccRobot::incrementTargetPosition() {
 	}
 }
 
-void ccRobot::animateToNewPosition() {
-	for (int i = 0; i < currentAngles.size(); i++) {
-		float targetAngle = targetAngles.at(currentPositionIndex).at(i);
-		currentAngles.at(i).animateTo(targetAngle);
-	}
+void ccRobot::animateToIndexPosition() {
+    for (int i = 0; i < currentAngles.size(); i++) {
+        float targetAngle = targetAngles.at(currentPositionIndex).at(i);
+        currentAngles.at(i).animateTo(targetAngle);
+    }
+}
+
+void ccRobot::resetToIndexPosition() {
+    for (int i = 0; i < currentAngles.size(); i++) {
+        float targetAngle = targetAngles.at(currentPositionIndex).at(i);
+        currentAngles.at(i).reset(targetAngle);
+    }
 }
 
 void ccRobot::setCoordinateSystem() {

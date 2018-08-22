@@ -28,6 +28,8 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key){
     if (key == 'r') {
         robot.resetAnimation();
+    } else if (key == ' ') {
+        robot.startPlaying();
     } else if (key == 'w') {
         robot.toggleWireframes();
         lighting.toggleLighting();
