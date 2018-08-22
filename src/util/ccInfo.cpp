@@ -10,6 +10,7 @@ void ccInfo::update(string currentFileName) {
     info += "r: reset animation\n";
     info += "w: toggle wireframes\n";
     info += "l: toggle lights\n";
+    info += "f: toggle fullscreen\n";
     info += "SPACE: play / pause\n";
     info += "\n";
     info += "file: " + currentFileName;

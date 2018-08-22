@@ -37,6 +37,8 @@ void ofApp::keyPressed(int key){
     } else if (key == 'w') {
         robot.toggleWireframes();
         lighting.toggleLighting();
+    } else if (key == 'f') {
+        ofToggleFullscreen();
     } else if (key == 'l') {
         lighting.toggleLightPositions();
     } else if (key == OF_KEY_LEFT) {

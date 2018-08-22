@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3AA0D4FAA89D0F8A0E545 /* OscReceivedElements.cpp */; };
-		1A4B1C259CF00B2F3C41238E /* ccParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68FD95056EBAC79D84B86EE2 /* ccParser.cpp */; };
+		1802CC57745F7D679624DE24 /* ccInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 171D70FDDB6B551CD88039CA /* ccInfo.cpp */; };
 		1CC7C1665C66F03C5745ACED /* ccRobot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 885A219D802859B0F2ECEEA9 /* ccRobot.cpp */; };
 		2C61E47DDBFD642D87E63940 /* ofxAnimatableQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B92DA6F38EA1F474E3EB7 /* ofxAnimatableQueue.cpp */; };
+		2CD42E73DCB3BB95201133DE /* ccKinect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A2F1FE150D4E4C78F892D8B /* ccKinect.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
 		510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */; };
 		52C77060FBB9307AEFDAE8C6 /* ofxAnimatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7CFEE77982205D3F1496C03 /* ofxAnimatable.cpp */; };
@@ -24,6 +25,8 @@
 		6847664D0060F42AEBB4E101 /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61CB8B1EABE69C099F2D7196 /* Parser.cpp */; };
 		72A929D3561B8232A182ABFC /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65EEFA3DA3526E9CDD9C21F9 /* ofxOscBundle.cpp */; };
 		74D31933EE82E12834DB3B06 /* ofxAnimatableOfColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 777D89F9EECAC3FE2405D5D1 /* ofxAnimatableOfColor.cpp */; };
+		7B363DCB760BBF856F738860 /* ccClock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E908F3F3B765AAA9D56BD07A /* ccClock.cpp */; };
+		81BD7667D5DAED72ED5218BC /* ccParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 701BA2D1F958C05650F6AED5 /* ccParser.cpp */; };
 		879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9BFFBBF4CC43DEE890B3C3E /* OscTypes.cpp */; };
 		8B4B9605C076F9088F028D61 /* Joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38DBC8D25BE4A15EE388FA7E /* Joint.cpp */; };
 		8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81967292BFC87A0144BD32C6 /* ofxOscSender.cpp */; };
@@ -79,6 +82,7 @@
 		0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscParameterSync.cpp; path = ../../../addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
 		0DC201DC4F43A3A79859C7A5 /* ccSegment.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ccSegment.cpp; path = src/concat/ccSegment.cpp; sourceTree = SOURCE_ROOT; };
 		12A053C2769FC3792B2397F7 /* ccLighting.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ccLighting.cpp; path = src/concat/ccLighting.cpp; sourceTree = SOURCE_ROOT; };
+		171D70FDDB6B551CD88039CA /* ccInfo.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ccInfo.cpp; path = src/util/ccInfo.cpp; sourceTree = SOURCE_ROOT; };
 		19353B848D00463F2E36BB2E /* ofxKinectV2OSC.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxKinectV2OSC.h; path = "../../../addons/ofxKinectV2-OSC/src/ofxKinectV2OSC.h"; sourceTree = SOURCE_ROOT; };
 		1C9E4AC6CF4626BA74F7E994 /* ofxAnimatableFloat.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxAnimatableFloat.cpp; path = ../../../addons/ofxAnimatable/src/ofxAnimatableFloat.cpp; sourceTree = SOURCE_ROOT; };
 		20F35AFADAF0068B067E713F /* OscReceivedElements.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = OscReceivedElements.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscReceivedElements.h; sourceTree = SOURCE_ROOT; };
@@ -98,15 +102,18 @@
 		583E7F54B84A88FD5D4B5C1A /* Mapper.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Mapper.cpp; path = "../../../addons/ofxKinectV2-OSC/src/DataTransform/Mapper.cpp"; sourceTree = SOURCE_ROOT; };
 		59FD809E303FEC1D986FF9DF /* Logger.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Logger.h; path = "../../../addons/ofxKinectV2-OSC/src/DataTransform/Logger.h"; sourceTree = SOURCE_ROOT; };
 		5A6936A5770BEB310F3826AD /* ofxAnimatableOfColor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxAnimatableOfColor.h; path = ../../../addons/ofxAnimatable/src/ofxAnimatableOfColor.h; sourceTree = SOURCE_ROOT; };
+		5D76B6B0DBFB418922912163 /* ccInfo.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ccInfo.h; path = src/util/ccInfo.h; sourceTree = SOURCE_ROOT; };
 		5FCA34E402E9C3A0C48F9FA9 /* ofxAnimatableOfPoint.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxAnimatableOfPoint.h; path = ../../../addons/ofxAnimatable/src/ofxAnimatableOfPoint.h; sourceTree = SOURCE_ROOT; };
 		61CB8B1EABE69C099F2D7196 /* Parser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Parser.cpp; path = "../../../addons/ofxKinectV2-OSC/src/DataTransform/Parser.cpp"; sourceTree = SOURCE_ROOT; };
 		63A47AC60FFAFC3BF093EC0F /* OscOutboundPacketStream.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = OscOutboundPacketStream.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscOutboundPacketStream.cpp; sourceTree = SOURCE_ROOT; };
 		65EEFA3DA3526E9CDD9C21F9 /* ofxOscBundle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscBundle.cpp; path = ../../../addons/ofxOsc/src/ofxOscBundle.cpp; sourceTree = SOURCE_ROOT; };
 		6762B6B9117F03414A257328 /* ccSegment.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ccSegment.h; path = src/concat/ccSegment.h; sourceTree = SOURCE_ROOT; };
 		688837E5F1F103E4FD361DAA /* Parser.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Parser.h; path = "../../../addons/ofxKinectV2-OSC/src/DataTransform/Parser.h"; sourceTree = SOURCE_ROOT; };
-		68FD95056EBAC79D84B86EE2 /* ccParser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ccParser.cpp; path = src/concat/ccParser.cpp; sourceTree = SOURCE_ROOT; };
+		6A2F1FE150D4E4C78F892D8B /* ccKinect.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ccKinect.cpp; path = src/concat/ccKinect.cpp; sourceTree = SOURCE_ROOT; };
 		6B65E6930994CC4B2D2B8B33 /* OscPacketListener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = OscPacketListener.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscPacketListener.h; sourceTree = SOURCE_ROOT; };
 		6C6A6CF2AD309C3B58922071 /* ofxAnimatableFloat.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxAnimatableFloat.h; path = ../../../addons/ofxAnimatable/src/ofxAnimatableFloat.h; sourceTree = SOURCE_ROOT; };
+		6D30B0A418FF10D7FD8D9977 /* ccParser.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ccParser.h; path = src/util/ccParser.h; sourceTree = SOURCE_ROOT; };
+		701BA2D1F958C05650F6AED5 /* ccParser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ccParser.cpp; path = src/util/ccParser.cpp; sourceTree = SOURCE_ROOT; };
 		7689F8A0F3D0B7635A8C3104 /* ofxOscArg.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxOscArg.h; path = ../../../addons/ofxOsc/src/ofxOscArg.h; sourceTree = SOURCE_ROOT; };
 		777D89F9EECAC3FE2405D5D1 /* ofxAnimatableOfColor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxAnimatableOfColor.cpp; path = ../../../addons/ofxAnimatable/src/ofxAnimatableOfColor.cpp; sourceTree = SOURCE_ROOT; };
 		81967292BFC87A0144BD32C6 /* ofxOscSender.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscSender.cpp; path = ../../../addons/ofxOsc/src/ofxOscSender.cpp; sourceTree = SOURCE_ROOT; };
@@ -118,11 +125,12 @@
 		9F7986DC4EB05E75FCE2C777 /* ofxOscSender.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxOscSender.h; path = ../../../addons/ofxOsc/src/ofxOscSender.h; sourceTree = SOURCE_ROOT; };
 		A1E489615DA9497A4B4D8CEA /* ofxKinectV2OSC.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxKinectV2OSC.cpp; path = "../../../addons/ofxKinectV2-OSC/src/ofxKinectV2OSC.cpp"; sourceTree = SOURCE_ROOT; };
 		A2AAA8CA403479E6FCDF920E /* OscHostEndianness.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = OscHostEndianness.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscHostEndianness.h; sourceTree = SOURCE_ROOT; };
+		A34BE90C37009B07F26498B7 /* ccKinect.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ccKinect.h; path = src/concat/ccKinect.h; sourceTree = SOURCE_ROOT; };
 		A42EDC146AFAF6CAB4AFC221 /* ccRobot.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ccRobot.h; path = src/concat/ccRobot.h; sourceTree = SOURCE_ROOT; };
+		A82E5B13857957A54F62A8A8 /* ccClock.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ccClock.h; path = src/util/ccClock.h; sourceTree = SOURCE_ROOT; };
 		ADD194746185E2DA11468377 /* IpEndpointName.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = IpEndpointName.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/IpEndpointName.cpp; sourceTree = SOURCE_ROOT; };
 		AE335EB4709BFD4671EEAC84 /* MessageMappingOscPacketListener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = MessageMappingOscPacketListener.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/MessageMappingOscPacketListener.h; sourceTree = SOURCE_ROOT; };
 		B31C608870ECEB2490A93736 /* ofxOscParameterSync.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxOscParameterSync.h; path = ../../../addons/ofxOsc/src/ofxOscParameterSync.h; sourceTree = SOURCE_ROOT; };
-		B663137C9A30226D750DC2E6 /* ccParser.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ccParser.h; path = src/concat/ccParser.h; sourceTree = SOURCE_ROOT; };
 		BC8881B3C8C0A1C45F042E7A /* OscPrintReceivedElements.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = OscPrintReceivedElements.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscPrintReceivedElements.cpp; sourceTree = SOURCE_ROOT; };
 		C2FAC65C491D4231379F3298 /* ofxOscReceiver.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxOscReceiver.cpp; path = ../../../addons/ofxOsc/src/ofxOscReceiver.cpp; sourceTree = SOURCE_ROOT; };
 		C43CDCD2AF16EDBE562125CB /* Joint.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Joint.h; path = "../../../addons/ofxKinectV2-OSC/src/Body/Joint.h"; sourceTree = SOURCE_ROOT; };
@@ -141,6 +149,7 @@
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = UdpSocket.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/posix/UdpSocket.cpp; sourceTree = SOURCE_ROOT; };
+		E908F3F3B765AAA9D56BD07A /* ccClock.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ccClock.cpp; path = src/util/ccClock.cpp; sourceTree = SOURCE_ROOT; };
 		F0D557A2DB1D354A1384A2DA /* Interpreter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Interpreter.h; path = "../../../addons/ofxKinectV2-OSC/src/Body/Interpreter.h"; sourceTree = SOURCE_ROOT; };
 		F4F5B6B8BA2BD52C646ED908 /* OscException.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = OscException.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscException.h; sourceTree = SOURCE_ROOT; };
 		F7CFEE77982205D3F1496C03 /* ofxAnimatable.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxAnimatable.cpp; path = ../../../addons/ofxAnimatable/src/ofxAnimatable.cpp; sourceTree = SOURCE_ROOT; };
@@ -165,16 +174,29 @@
 		0E46C754F6272D6ED0002752 /* concat */ = {
 			isa = PBXGroup;
 			children = (
+				6A2F1FE150D4E4C78F892D8B /* ccKinect.cpp */,
+				A34BE90C37009B07F26498B7 /* ccKinect.h */,
 				12A053C2769FC3792B2397F7 /* ccLighting.cpp */,
 				F9943EC48F6DAA2E8F02B29C /* ccLighting.h */,
-				68FD95056EBAC79D84B86EE2 /* ccParser.cpp */,
-				B663137C9A30226D750DC2E6 /* ccParser.h */,
 				885A219D802859B0F2ECEEA9 /* ccRobot.cpp */,
 				A42EDC146AFAF6CAB4AFC221 /* ccRobot.h */,
 				0DC201DC4F43A3A79859C7A5 /* ccSegment.cpp */,
 				6762B6B9117F03414A257328 /* ccSegment.h */,
 			);
 			name = concat;
+			sourceTree = "<group>";
+		};
+		174FB92B07113C7D1223D425 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				E908F3F3B765AAA9D56BD07A /* ccClock.cpp */,
+				A82E5B13857957A54F62A8A8 /* ccClock.h */,
+				171D70FDDB6B551CD88039CA /* ccInfo.cpp */,
+				5D76B6B0DBFB418922912163 /* ccInfo.h */,
+				701BA2D1F958C05650F6AED5 /* ccParser.cpp */,
+				6D30B0A418FF10D7FD8D9977 /* ccParser.h */,
+			);
+			name = util;
 			sourceTree = "<group>";
 		};
 		30CB364908817057B430D528 /* osc */ = {
@@ -353,6 +375,7 @@
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				0E46C754F6272D6ED0002752 /* concat */,
+				174FB92B07113C7D1223D425 /* util */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -517,8 +540,11 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				1CC7C1665C66F03C5745ACED /* ccRobot.cpp in Sources */,
 				617CA3341648734401301548 /* ccSegment.cpp in Sources */,
-				1A4B1C259CF00B2F3C41238E /* ccParser.cpp in Sources */,
+				2CD42E73DCB3BB95201133DE /* ccKinect.cpp in Sources */,
 				AD2C0C2B8ED1DAB69125A162 /* ccLighting.cpp in Sources */,
+				7B363DCB760BBF856F738860 /* ccClock.cpp in Sources */,
+				1802CC57745F7D679624DE24 /* ccInfo.cpp in Sources */,
+				81BD7667D5DAED72ED5218BC /* ccParser.cpp in Sources */,
 				74D31933EE82E12834DB3B06 /* ofxAnimatableOfColor.cpp in Sources */,
 				52C77060FBB9307AEFDAE8C6 /* ofxAnimatable.cpp in Sources */,
 				5D067CF087427621DD1E64B8 /* ofxAnimatableFloat.cpp in Sources */,
@@ -584,6 +610,7 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/concat,
+					src/util,
 					../../../addons/ofxAnimatable/src,
 					"../../../addons/ofxKinectV2-OSC/src",
 					"../../../addons/ofxKinectV2-OSC/src/Body",
@@ -621,6 +648,7 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/concat,
+					src/util,
 					../../../addons/ofxAnimatable/src,
 					"../../../addons/ofxKinectV2-OSC/src",
 					"../../../addons/ofxKinectV2-OSC/src/Body",
@@ -669,6 +697,7 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/concat,
+					src/util,
 					../../../addons/ofxAnimatable/src,
 					"../../../addons/ofxKinectV2-OSC/src",
 					"../../../addons/ofxKinectV2-OSC/src/Body",
@@ -717,6 +746,7 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/concat,
+					src/util,
 					../../../addons/ofxAnimatable/src,
 					"../../../addons/ofxKinectV2-OSC/src",
 					"../../../addons/ofxKinectV2-OSC/src/Body",
@@ -754,6 +784,7 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/concat,
+					src/util,
 					../../../addons/ofxAnimatable/src,
 					"../../../addons/ofxKinectV2-OSC/src",
 					"../../../addons/ofxKinectV2-OSC/src/Body",
@@ -791,6 +822,7 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 					src/concat,
+					src/util,
 					../../../addons/ofxAnimatable/src,
 					"../../../addons/ofxKinectV2-OSC/src",
 					"../../../addons/ofxKinectV2-OSC/src/Body",
