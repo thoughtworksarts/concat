@@ -9,6 +9,7 @@ void ccKinect::setup() {
 
     infoPosition.x = ofGetWidth() * 0.25;
     infoPosition.y = ofGetHeight() * 0.5;
+    renderTranslation.x = ofGetWidth() * -0.25;
 }
 
 void ccKinect::update() {
@@ -27,8 +28,7 @@ void ccKinect::draw() {
 
 void ccKinect::drawSkeletons() {
     ofPushMatrix();
-    //kinect.drawDebug();
-    ofTranslate(ofGetWidth() * 0.25, 0);
+    ofTranslate(renderTranslation);
     renderer.drawSkeleton(kinect.getNearestSkeleton());
     ofPopMatrix();
 }

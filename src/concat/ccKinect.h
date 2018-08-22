@@ -18,5 +18,5 @@ protected:
     vector<Skeleton>* skeletons;
     ofTrueTypeFont smallFont, largeFont;
     BodyRenderer renderer;
-    ofVec2f infoPosition;
+    ofVec2f infoPosition, renderTranslation;
 };
