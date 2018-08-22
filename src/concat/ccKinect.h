@@ -11,9 +11,12 @@ public:
     void draw();
 
 protected:
+    void drawSkeletons();
+
     ofxKinectV2OSC kinect;
     Skeleton* skeleton;
     vector<Skeleton>* skeletons;
     ofTrueTypeFont smallFont, largeFont;
     BodyRenderer renderer;
+    ofVec2f infoPosition;
 };

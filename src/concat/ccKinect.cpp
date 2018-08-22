@@ -6,6 +6,9 @@ void ccKinect::setup() {
     kinect.setup(12345, smallFont);
     skeletons = kinect.getSkeletons();
     renderer.setup(skeletons, largeFont);
+
+    infoPosition.x = ofGetWidth() * 0.25;
+    infoPosition.y = ofGetHeight() * 0.5;
 }
 
 void ccKinect::update() {
@@ -13,6 +16,16 @@ void ccKinect::update() {
 }
 
 void ccKinect::draw() {
+    if (kinect.hasSkeletons()) {
+        drawSkeletons();
+    }
+    else {
+        ofSetColor(ofColor::grey);
+        ofDrawBitmapString("Searching for skeletons...", infoPosition);
+    }
+}
+
+void ccKinect::drawSkeletons() {
     ofPushMatrix();
     //kinect.drawDebug();
     ofTranslate(ofGetWidth() * 0.25, 0);
