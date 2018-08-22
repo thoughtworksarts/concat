@@ -47,8 +47,8 @@ void ccRobot::draw() {
     ofPopMatrix();
 }
 
-void ccRobot::startPlaying() {
-    playing = true;
+void ccRobot::togglePlaying() {
+    playing = !playing;
 }
 
 void ccRobot::newPositionSet(const vector<vector<float>>& _targetAngles) {

@@ -29,7 +29,7 @@ void ofApp::keyPressed(int key){
     if (key == 'r') {
         robot.resetAnimation();
     } else if (key == ' ') {
-        robot.startPlaying();
+        robot.togglePlaying();
     } else if (key == 'w') {
         robot.toggleWireframes();
         lighting.toggleLighting();
@@ -51,7 +51,7 @@ void ofApp::updateInfoOverlay() {
     info += "r: reset animation\n";
     info += "w: toggle wireframes\n";
     info += "l: toggle lights\n";
-    info += "SPACE: start playing\n";
+    info += "SPACE: play / pause\n";
     info += "\n";
     info += "file: " + dataParser.getCurrentFileName();
 
