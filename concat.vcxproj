@@ -217,6 +217,7 @@
     <ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.cpp" />
     <ClCompile Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp" />
     <ClCompile Include="src\util\ccClock.cpp" />
+    <ClCompile Include="src\util\ccInfo.cpp" />
     <ClCompile Include="src\util\ccParser.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +261,7 @@
     <ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.h" />
     <ClInclude Include="..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.h" />
     <ClInclude Include="src\util\ccClock.h" />
+    <ClInclude Include="src\util\ccInfo.h" />
     <ClInclude Include="src\util\ccParser.h" />
   </ItemGroup>
   <ItemGroup>

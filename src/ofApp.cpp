@@ -6,17 +6,15 @@ void ofApp::setup(){
     robot.setup(dataParser.getTargetAngles());
     lighting.setup();
     kinect.setup();
+    info.setup();
     clock.setup();
-
-    infoPosition.x = ofGetWidth() - 350;
-    infoPosition.y = 60;
 }
 
 void ofApp::update(){
-    updateInfoOverlay();
 	kinect.update();
     robot.update();
     lighting.update();
+    info.update(dataParser.getCurrentFileName());
     clock.update();
 }
 
@@ -25,10 +23,7 @@ void ofApp::draw(){
     robot.draw();
     lighting.draw();
     kinect.draw();
-
-    ofSetColor(ofColor::white);
-    ofDrawBitmapString(info, infoPosition);
-
+    info.draw();
     clock.draw();
 }
 
@@ -53,14 +48,4 @@ void ofApp::keyPressed(int key){
         robot.newPositionSet(dataParser.getTargetAngles());
         robot.resetAnimation();
     }
-}
-
-void ofApp::updateInfoOverlay() {
-    info = "";
-    info += "r: reset animation\n";
-    info += "w: toggle wireframes\n";
-    info += "l: toggle lights\n";
-    info += "SPACE: play / pause\n";
-    info += "\n";
-    info += "file: " + dataParser.getCurrentFileName();
 }

@@ -109,6 +109,9 @@
     <ClCompile Include="src\util\ccParser.cpp">
       <Filter>src\util</Filter>
     </ClCompile>
+    <ClCompile Include="src\util\ccInfo.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -294,6 +297,9 @@
       <Filter>src\util</Filter>
     </ClInclude>
     <ClInclude Include="src\util\ccParser.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\ccInfo.h">
       <Filter>src\util</Filter>
     </ClInclude>
   </ItemGroup>
