@@ -100,7 +100,7 @@ void ccRobot::setupSegments() {
 
     headSegment.setup(material);
     headSegment.setJointRadius(35);
-    headSegment.setBoxSize(30, 100, 30);
+    headSegment.setBoxSize(70, 50, 30);
 }
 
 void ccRobot::incrementTargetPosition() {

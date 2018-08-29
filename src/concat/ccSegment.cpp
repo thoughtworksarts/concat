@@ -3,7 +3,8 @@
 void ccSegment::setup(ofMaterial& _material) {
     material = _material;
     showWireframes = false;
-    setBoxSize(1, 1, 1);
+    //setBoxSize(1, 1, 1);
+	setCylinderSize(1, 1);
     setJointRadius(1);
 }
 
@@ -17,7 +18,8 @@ void ccSegment::draw() {
 
     ofPushMatrix();
     drawJoint();
-    drawBox();
+    //drawBox();
+	drawCylinder();
     drawRotationHandle();
     ofPopMatrix();
     ofTranslate(0, segmentHeight);
@@ -26,10 +28,18 @@ void ccSegment::draw() {
 
 void ccSegment::setBoxSize(float width, float height, float depth) {
     box.set(width, height, depth);
+	cylinder.set(width / 2, height / 2, width, height / 4);
     halfBoxWidth = width * 0.5;
     halfBoxHeight = height * 0.5;
     calculateSegmentHeight();
 }
+
+void ccSegment::setCylinderSize(float width, float height) {
+	cylinder.set(width / 2, height, width, height);
+	calculateCylinderSegmentHeight();
+}
+
+
 
 void ccSegment::setJointRadius(float radius) {
     joint.setRadius(radius);
@@ -42,6 +52,10 @@ void ccSegment::toggleWireframes() {
 
 void ccSegment::calculateSegmentHeight() {
     segmentHeight = box.getHeight() + joint.getRadius();
+}
+
+void ccSegment::calculateCylinderSegmentHeight() {
+	segmentHeight = cylinder.getHeight() + joint.getRadius();
 }
 
 void ccSegment::drawJoint() {
@@ -69,6 +83,20 @@ void ccSegment::drawBox() {
         ofSetColor(ofColor::grey);
         box.draw();
     }
+}
+
+void ccSegment::drawCylinder() {
+	ofTranslate(0, joint.getRadius() + halfBoxHeight);
+	ofSetLineWidth(1);
+
+	if (showWireframes) {
+		ofSetColor(ofColor::white);
+		cylinder.drawWireframe();
+	}
+	else {
+		ofSetColor(ofColor::grey);
+		cylinder.draw();
+	}
 }
 
 void ccSegment::drawRotationHandle() {
