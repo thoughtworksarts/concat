@@ -10,6 +10,8 @@ public:
 	void update();
     void draw();
 
+	void enable3d();
+
 protected:
     void drawSkeletons();
 

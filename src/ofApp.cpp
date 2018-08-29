@@ -49,5 +49,8 @@ void ofApp::keyPressed(int key){
         dataParser.loadNextFile();
         robot.newPositionSet(dataParser.getTargetAngles());
         robot.resetAnimation();
-    }
+	}
+	else if (key == '3') {
+		kinect.enable3d();
+	}
 }

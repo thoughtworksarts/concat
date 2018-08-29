@@ -32,3 +32,7 @@ void ccKinect::drawSkeletons() {
     renderer.drawSkeleton(kinect.getNearestSkeleton());
     ofPopMatrix();
 }
+
+void ccKinect::enable3d() {
+	renderer.toggleDraw3d();
+}
