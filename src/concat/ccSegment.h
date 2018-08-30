@@ -14,7 +14,7 @@ public:
     void toggleWireframes();
 	void drawSimpleCylinder(float joint1x, float joint1y, float joint2x, float joint2y, float radius);
 
-	void drawInColor(ofColor color);
+	void toggleSegmentHasMoved();
 
 protected:
     void calculateSegmentHeight();
@@ -32,4 +32,5 @@ protected:
 	ofSpherePrimitive joint;
 
     bool showWireframes;
+	bool segmentHasMoved;
 };

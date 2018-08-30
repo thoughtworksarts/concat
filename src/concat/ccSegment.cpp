@@ -6,6 +6,7 @@ void ccSegment::setup(ofMaterial& _material) {
     //setBoxSize(1, 1, 1);
 	setCylinderSize(1, 1);
     setJointRadius(1);
+	segmentHasMoved = false;
 }
 
 void ccSegment::translateToRotationCenter() {
@@ -13,12 +14,13 @@ void ccSegment::translateToRotationCenter() {
 }
 
 void ccSegment::draw() {
+	if (segmentHasMoved) {
+		segmentMaterial.setDiffuseColor(ofFloatColor(ofColor::lightSeaGreen));
+	}
     segmentMaterial.begin();
     ofFill();
-
     ofPushMatrix();
     drawJoint();
-    //drawBox();
 	drawCylinder();
     drawRotationHandle();
     ofPopMatrix();
@@ -38,7 +40,6 @@ void ccSegment::setCylinderSize(float width, float height) {
 	cylinder.set(width / 2, height, width, height);
 	calculateCylinderSegmentHeight();
 }
-
 
 
 void ccSegment::setJointRadius(float radius) {
@@ -107,13 +108,11 @@ void ccSegment::drawSimpleCylinder(float joint1x, float joint1y, float joint2x, 
 
 void ccSegment::drawRotationHandle() {
     if (showWireframes) {
-        ofSetColor(ofColor::green);
         ofSetLineWidth(2);
         ofDrawLine(halfBoxWidth, 0, box.getWidth(), 0);
     }
 }
 
-void ccSegment::drawInColor(ofColor color) {
-	segmentMaterial.setDiffuseColor(ofFloatColor(color));
-	draw();
+void ccSegment::toggleSegmentHasMoved() {
+	segmentHasMoved = !segmentHasMoved;
 }

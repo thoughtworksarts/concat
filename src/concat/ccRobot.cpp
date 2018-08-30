@@ -29,8 +29,7 @@ void ccRobot::draw() {
     ofBackground(ofColor::black);
     ofPushMatrix();
     setCoordinateSystem();
-    //baseSegment.draw();
-	baseSegment.drawInColor(ofColor::green);
+	baseSegment.draw();
 
     ofRotateYDeg(currentAngles.at(0).getCurrentValue() - 90);
     ofRotateZDeg(currentAngles.at(1).getCurrentValue());
@@ -39,6 +38,7 @@ void ccRobot::draw() {
     upperSegment.translateToRotationCenter();
     ofRotateZDeg(currentAngles.at(2).getCurrentValue() + 90);
     ofRotateYDeg(currentAngles.at(3).getCurrentValue());
+	upperSegment.toggleSegmentHasMoved();
     upperSegment.draw();
 
     headSegment.translateToRotationCenter();
