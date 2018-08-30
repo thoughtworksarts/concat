@@ -12,6 +12,9 @@ public:
 	void setCylinderSize(float width, float height);
     void setJointRadius(float radius);
     void toggleWireframes();
+	void drawSimpleCylinder(float joint1x, float joint1y, float joint2x, float joint2y, float radius);
+
+	void drawInColor(ofColor color);
 
 protected:
     void calculateSegmentHeight();
@@ -23,7 +26,7 @@ protected:
 
     float segmentHeight, halfBoxWidth, halfBoxHeight;
 
-    ofMaterial material;
+	ofMaterial segmentMaterial;
 	ofBoxPrimitive box;
 	ofCylinderPrimitive cylinder;
 	ofSpherePrimitive joint;

@@ -29,7 +29,8 @@ void ccRobot::draw() {
     ofBackground(ofColor::black);
     ofPushMatrix();
     setCoordinateSystem();
-    baseSegment.draw();
+    //baseSegment.draw();
+	baseSegment.drawInColor(ofColor::green);
 
     ofRotateYDeg(currentAngles.at(0).getCurrentValue() - 90);
     ofRotateZDeg(currentAngles.at(1).getCurrentValue());
@@ -85,6 +86,7 @@ void ccRobot::setupCurrentAngles() {
 void ccRobot::setupSegments() {
     material.setShininess(120);
     material.setSpecularColor(ofColor(255, 255, 255, 255));
+	material.setDiffuseColor(ofFloatColor (ofColor::thistle));
 
     baseSegment.setup(material);
     baseSegment.setJointRadius(0);

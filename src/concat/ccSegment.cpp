@@ -1,7 +1,7 @@
 #include "ccSegment.h"
 
 void ccSegment::setup(ofMaterial& _material) {
-    material = _material;
+    segmentMaterial = _material;
     showWireframes = false;
     //setBoxSize(1, 1, 1);
 	setCylinderSize(1, 1);
@@ -13,7 +13,7 @@ void ccSegment::translateToRotationCenter() {
 }
 
 void ccSegment::draw() {
-    material.begin();
+    segmentMaterial.begin();
     ofFill();
 
     ofPushMatrix();
@@ -23,7 +23,7 @@ void ccSegment::draw() {
     drawRotationHandle();
     ofPopMatrix();
     ofTranslate(0, segmentHeight);
-    material.end();
+    segmentMaterial.end();
 }
 
 void ccSegment::setBoxSize(float width, float height, float depth) {
@@ -99,10 +99,21 @@ void ccSegment::drawCylinder() {
 	}
 }
 
+void ccSegment::drawSimpleCylinder(float joint1x, float joint1y, float joint2x, float joint2y, float radius) {
+	float height = ofDist(joint1x, joint1y, joint2x, joint2y);
+	//ofDrawCylinder(joint1x, joint1y, 1, radius, height);
+	drawCylinder();
+}
+
 void ccSegment::drawRotationHandle() {
     if (showWireframes) {
         ofSetColor(ofColor::green);
         ofSetLineWidth(2);
         ofDrawLine(halfBoxWidth, 0, box.getWidth(), 0);
     }
+}
+
+void ccSegment::drawInColor(ofColor color) {
+	segmentMaterial.setDiffuseColor(ofFloatColor(color));
+	draw();
 }
