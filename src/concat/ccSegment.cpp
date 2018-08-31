@@ -6,7 +6,7 @@ void ccSegment::setup(ofMaterial& _material) {
     //setBoxSize(1, 1, 1);
 	setCylinderSize(1, 1);
     setJointRadius(1);
-	segmentHasMoved = false;
+	segmentIsMoving = false;
 }
 
 void ccSegment::translateToRotationCenter() {
@@ -14,8 +14,11 @@ void ccSegment::translateToRotationCenter() {
 }
 
 void ccSegment::draw() {
-	if (segmentHasMoved) {
+	if (segmentIsMoving) {
 		segmentMaterial.setDiffuseColor(ofFloatColor(ofColor::lightSeaGreen));
+	}
+	else {
+		segmentMaterial.setDiffuseColor(ofFloatColor(ofColor::thistle));
 	}
     segmentMaterial.begin();
     ofFill();
@@ -114,5 +117,9 @@ void ccSegment::drawRotationHandle() {
 }
 
 void ccSegment::toggleSegmentHasMoved() {
-	segmentHasMoved = !segmentHasMoved;
+	segmentIsMoving = !segmentIsMoving;
+}
+
+bool ccSegment::isSegmentMoving() {
+	return segmentIsMoving;
 }

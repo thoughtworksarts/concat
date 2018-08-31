@@ -23,6 +23,7 @@ protected:
     void resetToIndexPosition();
 	void setCoordinateSystem();
     bool oneSecondHasPassed();
+	bool jointIsInMotion(int angleIndex1, int angleIndex2);
 
 	int numAngles;
 	vector<vector<float>> targetAngles;
@@ -35,4 +36,5 @@ protected:
 	ofMaterial material;
     bool playing;
     int previousMod;
+
 };

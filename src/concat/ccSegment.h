@@ -16,6 +16,12 @@ public:
 
 	void toggleSegmentHasMoved();
 
+	bool isSegmentMoving();
+
+	bool segmentIsMoving;
+
+
+
 protected:
     void calculateSegmentHeight();
 	void calculateCylinderSegmentHeight();
@@ -32,5 +38,5 @@ protected:
 	ofSpherePrimitive joint;
 
     bool showWireframes;
-	bool segmentHasMoved;
+
 };

@@ -33,17 +33,46 @@ void ccRobot::draw() {
 
     ofRotateYDeg(currentAngles.at(0).getCurrentValue() - 90);
     ofRotateZDeg(currentAngles.at(1).getCurrentValue());
+	if (jointIsInMotion(0, 1)) {
+		if (!lowerSegment.isSegmentMoving()) {
+			lowerSegment.toggleSegmentHasMoved();
+		}
+	}
+	else {
+		if (lowerSegment.isSegmentMoving()) {
+			lowerSegment.toggleSegmentHasMoved();
+		}
+	}
     lowerSegment.draw();
 
     upperSegment.translateToRotationCenter();
     ofRotateZDeg(currentAngles.at(2).getCurrentValue() + 90);
     ofRotateYDeg(currentAngles.at(3).getCurrentValue());
-	upperSegment.toggleSegmentHasMoved();
+	if (jointIsInMotion(2, 3)) {
+		if (!upperSegment.isSegmentMoving()) {
+			upperSegment.toggleSegmentHasMoved();
+		}
+	}
+	else {
+		if (upperSegment.isSegmentMoving()) {
+			upperSegment.toggleSegmentHasMoved();
+		}
+	}
     upperSegment.draw();
 
     headSegment.translateToRotationCenter();
     ofRotateZDeg(currentAngles.at(4).getCurrentValue());
     ofRotateYDeg(currentAngles.at(5).getCurrentValue());
+	if (jointIsInMotion(4, 5)) {
+		if (!headSegment.isSegmentMoving()) {
+			headSegment.toggleSegmentHasMoved();
+		}
+	}
+	else {
+		if (headSegment.isSegmentMoving()) {
+			headSegment.toggleSegmentHasMoved();
+		}
+	}
     headSegment.draw();
 
     ofPopMatrix();
@@ -138,4 +167,15 @@ bool ccRobot::oneSecondHasPassed() {
     bool returnValue = currentMod < previousMod;
     previousMod = currentMod;
     return returnValue;
+}
+
+bool ccRobot::jointIsInMotion(int angleIndex1, int angleIndex2) {
+	if ((currentAngles.at(angleIndex1).getCurrentValue() 
+		!= targetAngles.at(currentPositionIndex).at(angleIndex1))
+		|| (currentAngles.at(angleIndex2).getCurrentValue() 
+			!= targetAngles.at(currentPositionIndex).at(angleIndex2))) {
+		return true;
+	}
+
+	return false;
 }
