@@ -21,8 +21,8 @@ void ofApp::update(){
 void ofApp::draw(){
     ofBackground(ofColor::black);
     robot.draw();
+	kinect.draw();
     lighting.draw();
-    kinect.draw();
     info.draw();
     clock.draw();
 }

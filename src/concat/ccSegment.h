@@ -20,13 +20,15 @@ public:
 
 	bool segmentIsMoving;
 
+	void drawBox();
+
+
 
 
 protected:
     void calculateSegmentHeight();
 	void calculateCylinderSegmentHeight();
     void drawJoint();
-    void drawBox();
 	void drawCylinder();
     void drawRotationHandle();
 
@@ -38,8 +40,6 @@ protected:
 	ofSpherePrimitive joint;
 
     bool showWireframes;
-
-	//std::vector<float> gradient;
 
 	int gradientDiff;
 	bool gradientSlope;

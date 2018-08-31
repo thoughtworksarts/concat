@@ -28,7 +28,6 @@ void ccSegment::draw() {
 		else {
 			gradientSlope = !gradientSlope;
 		}
-		cout << gradientDiff << endl;
 		
 	}
 	else {
