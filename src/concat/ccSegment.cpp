@@ -7,15 +7,29 @@ void ccSegment::setup(ofMaterial& _material) {
 	setCylinderSize(1, 1);
     setJointRadius(1);
 	segmentIsMoving = false;
+	gradientDiff = 0;
+	gradientSlope = true;
 }
 
 void ccSegment::translateToRotationCenter() {
     ofTranslate(0, joint.getRadius());
 }
 
+//TODO: Fix Smoothness of gradient
 void ccSegment::draw() {
 	if (segmentIsMoving) {
-		segmentMaterial.setDiffuseColor(ofFloatColor(ofColor::lightSeaGreen));
+		segmentMaterial.setDiffuseColor(ofFloatColor(ofColor(100+gradientDiff, 0, 50)));
+		if (gradientDiff < 255 && gradientSlope) {
+			gradientDiff++;
+		}
+		else if (gradientDiff > 0 && !gradientSlope) {
+			gradientDiff--;
+		}
+		else {
+			gradientSlope = !gradientSlope;
+		}
+		cout << gradientDiff << endl;
+		
 	}
 	else {
 		segmentMaterial.setDiffuseColor(ofFloatColor(ofColor::thistle));
@@ -105,7 +119,6 @@ void ccSegment::drawCylinder() {
 
 void ccSegment::drawSimpleCylinder(float joint1x, float joint1y, float joint2x, float joint2y, float radius) {
 	float height = ofDist(joint1x, joint1y, joint2x, joint2y);
-	//ofDrawCylinder(joint1x, joint1y, 1, radius, height);
 	drawCylinder();
 }
 
