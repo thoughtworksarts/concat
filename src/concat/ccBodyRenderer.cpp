@@ -93,8 +93,61 @@ void ccBodyRenderer::drawBones() {
 	drawLeftLeg();
 }
 
+void ccBodyRenderer::drawNeck(Joint head, Joint neck) {
+	TrackingState trackingState = combinedTrackingState(head, neck);
+
+	if (trackingState == TRACKED) {
+		ofSetLineWidth(10);
+		ofSetColor(ofColor::white);
+		if (isDraw3dEnabled) {
+			//Draw 3d Here
+			float headX = head.getPoint().x;
+			float headY = head.getPoint().y;
+			float neckX = neck.getPoint().x;
+			float neckY = neck.getPoint().y;
+			float headZ = head.getPoint().z;
+			float neckZ = neck.getPoint().z;
+			float neckLength = head.getPoint().distance(neck.getPoint());
+			ofVec3f centerPoint; 
+			centerPoint.set((headX + neckX) / 2, (headY + neckY) / 2, (headZ + neckZ) / 2);
+
+			ofVec3f preRotateVec;
+			ofVec3f postRotateVec;
+
+			preRotateVec.set(centerPoint.x - centerPoint.x, (centerPoint.y + neckLength / 2) - centerPoint.y, centerPoint.z - centerPoint.z);
+			postRotateVec.set(headX - centerPoint.x, headY - centerPoint.y, headZ - centerPoint.z);
+			
+			float angle = atan2(preRotateVec.y - postRotateVec.y, preRotateVec.x - postRotateVec.x);
+			float angleDeg = (angle * 180) / PI;
+
+			ofPushMatrix();
+			ofTranslate(centerPoint);
+			ofRotateZ(-(-90-angleDeg));
+			ofDrawCylinder(0, 0, 0, 25, neckLength);
+			ofRotateZ(-(90-angleDeg));
+			ofTranslate(-centerPoint);
+			ofPopMatrix();
+			ofDrawLine(head.getPoint(), neck.getPoint());
+			
+		}
+		else {
+			ofLine(head.getPoint(), neck.getPoint());
+		}
+	}
+	else if (trackingState == INFERRED) {
+		ofSetLineWidth(1);
+		ofSetColor(ofColor::gray);
+		if (isDraw3dEnabled) {
+			//Draw 3d here
+		}
+		else {
+			ofLine(head.getPoint(), neck.getPoint());
+		}
+	}
+}
+
 void ccBodyRenderer::drawTorso() {
-	drawBone(skeleton->getHead(), skeleton->getNeck());
+	drawNeck(skeleton->getHead(), skeleton->getNeck());
 	drawBone(skeleton->getNeck(), skeleton->getSpineShoulder());
 	drawBone(skeleton->getSpineShoulder(), skeleton->getSpineMid());
 	drawBone(skeleton->getSpineMid(), skeleton->getSpineBase());
@@ -141,7 +194,7 @@ void ccBodyRenderer::drawBone(Joint joint1, Joint joint2) {
 		ofSetColor(ofColor::white);
 		if (isDraw3dEnabled) {
 			//Draw 3d Here
-			ofDrawCylinder(joint1.getPoint().x, joint1.getPoint().y, 0, 20, joint2.getPoint().y - joint1.getPoint().y);
+			//ofDrawCylinder(joint1.getPoint().x, joint1.getPoint().y, 0, 20, joint2.getPoint().y - joint1.getPoint().y);
 		}
 		else {
 			ofLine(joint1.getPoint(), joint2.getPoint());

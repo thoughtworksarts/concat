@@ -28,6 +28,8 @@ public:
 	void drawLeftLeg();
 	virtual void drawBone(Joint joint1, Joint joint2);
 
+	void drawNeck(Joint head, Joint neck);
+
 	void drawJoints();
 	virtual void drawJoint(Joint joint);
 
