@@ -184,6 +184,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\concat\ccBodyRenderer.cpp" />
     <ClCompile Include="src\concat\ccKinect.cpp" />
     <ClCompile Include="src\concat\ccLighting.cpp" />
     <ClCompile Include="src\concat\ccRobot.cpp" />
@@ -221,6 +222,7 @@
     <ClCompile Include="src\util\ccParser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\concat\ccBodyRenderer.h" />
     <ClInclude Include="src\concat\ccKinect.h" />
     <ClInclude Include="src\concat\ccLighting.h" />
     <ClInclude Include="src\concat\ccRobot.h" />

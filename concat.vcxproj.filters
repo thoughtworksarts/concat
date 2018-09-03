@@ -112,6 +112,9 @@
     <ClCompile Include="src\util\ccInfo.cpp">
       <Filter>src\util</Filter>
     </ClCompile>
+    <ClCompile Include="src\concat\ccBodyRenderer.cpp">
+      <Filter>src\concat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -301,6 +304,9 @@
     </ClInclude>
     <ClInclude Include="src\util\ccInfo.h">
       <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\concat\ccBodyRenderer.h">
+      <Filter>src\concat</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

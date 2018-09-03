@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxKinectV2OSC.h"
+#include "ccBodyRenderer.h"
 
 class ccKinect {
 
@@ -19,6 +20,6 @@ protected:
     Skeleton* skeleton;
     vector<Skeleton>* skeletons;
     ofTrueTypeFont smallFont, largeFont;
-    BodyRenderer renderer;
+	ccBodyRenderer renderer;
     ofVec2f infoPosition, renderTranslation;
 };
