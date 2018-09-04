@@ -140,10 +140,17 @@ void ccBodyRenderer::draw3dBone(Joint baseJoint, Joint connectingJoint) {
 	postRotateVec.normalize();
 
 	float angle = std::acos(dot(preRotateVec, postRotateVec) / (mag(preRotateVec)*mag(postRotateVec)));
+	float angleDegrees = (angle * 180) / PI;
 
 	ofPushMatrix();
 	ofTranslate(centerPoint);
-	ofRotateZ((angle*180)/PI);
+	if(baseJointX>connectingJointX) {
+		ofRotateZ(-angleDegrees);
+	}
+	else {
+		ofRotateZ(angleDegrees);
+	}
+
 	ofDrawCylinder(0, 0, 0, 25, boneLength);
 	ofRotateZ(-angle);
 	ofPopMatrix();
