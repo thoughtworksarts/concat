@@ -94,64 +94,57 @@ void ccBodyRenderer::drawBones() {
 	drawLeftLeg();
 }
 
-void ccBodyRenderer::drawBone(Joint head, Joint neck) {
-	TrackingState trackingState = combinedTrackingState(head, neck);
+void ccBodyRenderer::drawBone(Joint baseJoint, Joint connectingJoint) {
+	TrackingState trackingState = combinedTrackingState(baseJoint, connectingJoint);
 
 	if (trackingState == TRACKED) {
 		ofSetLineWidth(10);
 		ofSetColor(ofColor::white);
 		if (isDraw3dEnabled) {
-			//Draw 3d Here
-			draw3dBone(head, neck);
-			ofDrawLine(head.getPoint(), neck.getPoint());
+			draw3dBone(baseJoint, connectingJoint);
+			ofDrawLine(baseJoint.getPoint(), connectingJoint.getPoint());
 			
 		}
 		else {
-			ofLine(head.getPoint(), neck.getPoint());
+			ofLine(baseJoint.getPoint(), connectingJoint.getPoint());
 		}
 	}
 	else if (trackingState == INFERRED) {
 		ofSetLineWidth(1);
 		ofSetColor(ofColor::gray);
 		if (isDraw3dEnabled) {
-			//Draw 3d here
+			draw3dBone(baseJoint, connectingJoint);
 		}
 		else {
-			ofLine(head.getPoint(), neck.getPoint());
+			ofLine(baseJoint.getPoint(), connectingJoint.getPoint());
 		}
 	}
 }
 
-void ccBodyRenderer::draw3dBone(Joint head, Joint neck) {
-	float headX = head.getPoint().x;
-	float headY = head.getPoint().y;
-	float neckX = neck.getPoint().x;
-	float neckY = neck.getPoint().y;
-	float headZ = head.getPoint().z;
-	float neckZ = neck.getPoint().z;
-	float neckLength = head.getPoint().distance(neck.getPoint());
+void ccBodyRenderer::draw3dBone(Joint baseJoint, Joint connectingJoint) {
+	float baseJointX = baseJoint.getPoint().x;
+	float baseJointY = baseJoint.getPoint().y;
+	float connectingJointX = connectingJoint.getPoint().x;
+	float connectingJointY = connectingJoint.getPoint().y;
+	float baseJointZ = baseJoint.getPoint().z;
+	float connectingJointZ = connectingJoint.getPoint().z;
+	float boneLength = baseJoint.getPoint().distance(connectingJoint.getPoint());
 	ofVec3f centerPoint;
-	centerPoint.set((headX + neckX) / 2, (headY + neckY) / 2, (headZ + neckZ) / 2);
+	centerPoint.set((baseJointX + connectingJointX) / 2, (baseJointY + connectingJointY) / 2, (baseJointZ + connectingJointZ) / 2);
 
-	ofVec3f preRotateVecZ;
-	ofVec3f postRotateVecZ;
-	
-	preRotateVecZ.set(0, 1, 0);
-	postRotateVecZ.set(headX - centerPoint.x, headY - centerPoint.y, headZ - centerPoint.z);
+	ofVec3f preRotateVec;
+	ofVec3f postRotateVec;
+	preRotateVec.set(0, 1, 0);
+	postRotateVec.set(baseJointX - centerPoint.x, baseJointY - centerPoint.y, baseJointZ - centerPoint.z);
+	preRotateVec.normalize();
+	postRotateVec.normalize();
 
-	preRotateVecZ.normalize();
-	postRotateVecZ.normalize();
-
-	float angle = std::acos(dot(preRotateVecZ, postRotateVecZ) / (mag(preRotateVecZ)*mag(postRotateVecZ)));
+	float angle = std::acos(dot(preRotateVec, postRotateVec) / (mag(preRotateVec)*mag(postRotateVec)));
 
 	ofPushMatrix();
-
 	ofTranslate(centerPoint);
-	
 	ofRotateZ((angle*180)/PI);
-
-	ofDrawCylinder(0, 0, 0, 25, neckLength);
-
+	ofDrawCylinder(0, 0, 0, 25, boneLength);
 	ofRotateZ(-angle);
 	ofPopMatrix();
 
