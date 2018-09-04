@@ -28,7 +28,7 @@ public:
 	void drawLeftLeg();
 	virtual void drawBone(Joint joint1, Joint joint2);
 
-	void drawNeck(Joint head, Joint neck);
+	void draw3dBone(Joint joint1, Joint joint2);
 
 	void drawJoints();
 	virtual void drawJoint(Joint joint);
@@ -38,6 +38,9 @@ public:
 
 	bool isDraw3dEnabled;
 	void toggleDraw3d();
+
+	float dot(ofVec3f a, ofVec3f b);
+	float mag(ofVec3f a);
 
 
 

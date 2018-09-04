@@ -13,6 +13,7 @@ void ccSegment::setup(ofMaterial& _material) {
 
 void ccSegment::translateToRotationCenter() {
     ofTranslate(0, joint.getRadius());
+	
 }
 
 //TODO: Fix Smoothness of gradient

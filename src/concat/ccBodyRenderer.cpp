@@ -1,4 +1,5 @@
 #include "ccBodyRenderer.h"
+#include <cmath>
 
 void ccBodyRenderer::setup(vector<Skeleton>* _skeletons) {
 	skeletons = _skeletons;
@@ -93,7 +94,7 @@ void ccBodyRenderer::drawBones() {
 	drawLeftLeg();
 }
 
-void ccBodyRenderer::drawNeck(Joint head, Joint neck) {
+void ccBodyRenderer::drawBone(Joint head, Joint neck) {
 	TrackingState trackingState = combinedTrackingState(head, neck);
 
 	if (trackingState == TRACKED) {
@@ -101,32 +102,7 @@ void ccBodyRenderer::drawNeck(Joint head, Joint neck) {
 		ofSetColor(ofColor::white);
 		if (isDraw3dEnabled) {
 			//Draw 3d Here
-			float headX = head.getPoint().x;
-			float headY = head.getPoint().y;
-			float neckX = neck.getPoint().x;
-			float neckY = neck.getPoint().y;
-			float headZ = head.getPoint().z;
-			float neckZ = neck.getPoint().z;
-			float neckLength = head.getPoint().distance(neck.getPoint());
-			ofVec3f centerPoint; 
-			centerPoint.set((headX + neckX) / 2, (headY + neckY) / 2, (headZ + neckZ) / 2);
-
-			ofVec3f preRotateVec;
-			ofVec3f postRotateVec;
-
-			preRotateVec.set(centerPoint.x - centerPoint.x, (centerPoint.y + neckLength / 2) - centerPoint.y, centerPoint.z - centerPoint.z);
-			postRotateVec.set(headX - centerPoint.x, headY - centerPoint.y, headZ - centerPoint.z);
-			
-			float angle = atan2(preRotateVec.y - postRotateVec.y, preRotateVec.x - postRotateVec.x);
-			float angleDeg = (angle * 180) / PI;
-
-			ofPushMatrix();
-			ofTranslate(centerPoint);
-			ofRotateZ(-(-90-angleDeg));
-			ofDrawCylinder(0, 0, 0, 25, neckLength);
-			ofRotateZ(-(90-angleDeg));
-			ofTranslate(-centerPoint);
-			ofPopMatrix();
+			draw3dBone(head, neck);
 			ofDrawLine(head.getPoint(), neck.getPoint());
 			
 		}
@@ -146,8 +122,53 @@ void ccBodyRenderer::drawNeck(Joint head, Joint neck) {
 	}
 }
 
+void ccBodyRenderer::draw3dBone(Joint head, Joint neck) {
+	float headX = head.getPoint().x;
+	float headY = head.getPoint().y;
+	float neckX = neck.getPoint().x;
+	float neckY = neck.getPoint().y;
+	float headZ = head.getPoint().z;
+	float neckZ = neck.getPoint().z;
+	float neckLength = head.getPoint().distance(neck.getPoint());
+	ofVec3f centerPoint;
+	centerPoint.set((headX + neckX) / 2, (headY + neckY) / 2, (headZ + neckZ) / 2);
+
+	ofVec3f preRotateVecZ;
+	ofVec3f postRotateVecZ;
+	
+	preRotateVecZ.set(0, 1, 0);
+	postRotateVecZ.set(headX - centerPoint.x, headY - centerPoint.y, headZ - centerPoint.z);
+
+	preRotateVecZ.normalize();
+	postRotateVecZ.normalize();
+
+	float angle = std::acos(dot(preRotateVecZ, postRotateVecZ) / (mag(preRotateVecZ)*mag(postRotateVecZ)));
+
+	ofPushMatrix();
+
+	ofTranslate(centerPoint);
+	
+	ofRotateZ((angle*180)/PI);
+
+	ofDrawCylinder(0, 0, 0, 25, neckLength);
+
+	ofRotateZ(-angle);
+	ofPopMatrix();
+
+}
+
+float ccBodyRenderer::dot(ofVec3f a, ofVec3f b) {  //calculates dot product of a and b
+	return a.x * b.x + a.y * b.y + a.z * b.z;
+}
+
+float ccBodyRenderer::mag(ofVec3f a)  //calculates magnitude of a
+{
+	return std::sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
+}
+
+
 void ccBodyRenderer::drawTorso() {
-	drawNeck(skeleton->getHead(), skeleton->getNeck());
+	drawBone(skeleton->getHead(), skeleton->getNeck());
 	drawBone(skeleton->getNeck(), skeleton->getSpineShoulder());
 	drawBone(skeleton->getSpineShoulder(), skeleton->getSpineMid());
 	drawBone(skeleton->getSpineMid(), skeleton->getSpineBase());
@@ -185,33 +206,6 @@ void ccBodyRenderer::drawLeftLeg() {
 	drawBone(skeleton->getAnkleLeft(), skeleton->getFootLeft());
 }
 
-void ccBodyRenderer::drawBone(Joint joint1, Joint joint2) {
-
-	TrackingState trackingState = combinedTrackingState(joint1, joint2);
-
-	if (trackingState == TRACKED) {
-		ofSetLineWidth(10);
-		ofSetColor(ofColor::white);
-		if (isDraw3dEnabled) {
-			//Draw 3d Here
-			//ofDrawCylinder(joint1.getPoint().x, joint1.getPoint().y, 0, 20, joint2.getPoint().y - joint1.getPoint().y);
-		}
-		else {
-			ofLine(joint1.getPoint(), joint2.getPoint());
-		}
-	}
-	else if (trackingState == INFERRED) {
-		ofSetLineWidth(1);
-		ofSetColor(ofColor::gray);
-		if (isDraw3dEnabled) {
-			//Draw 3d here
-		}
-		else {
-			ofLine(joint1.getPoint(), joint2.getPoint());
-		}
-	}
-}
-
 void ccBodyRenderer::drawJoints() {
 	drawJoint(skeleton->getThumbRight());
 	drawJoint(skeleton->getSpineBase());
@@ -245,7 +239,7 @@ void ccBodyRenderer::drawJoint(Joint joint) {
 		ofSetColor(ofColor::lightGray);
 		ofFill();
 		if (isDraw3dEnabled) {
-			ofDrawSphere(joint.getPoint(), 10);
+			ofDrawSphere(joint.getPoint().x, joint.getPoint().y, 0, 10);
 		}
 		else {
 			ofCircle(joint.getPoint(), 10);
