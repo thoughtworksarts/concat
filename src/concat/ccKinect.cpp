@@ -10,6 +10,10 @@ void ccKinect::setup() {
     infoPosition.x = ofGetWidth() * 0.25;
     infoPosition.y = ofGetHeight() * 0.5;
     renderTranslation.x = ofGetWidth() * -0.25;
+
+	renderer.setCoordinateSystem();
+
+	
 }
 
 void ccKinect::update() {

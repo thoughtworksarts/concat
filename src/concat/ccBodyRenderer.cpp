@@ -3,7 +3,7 @@
 
 void ccBodyRenderer::setup(vector<Skeleton>* _skeletons) {
 	skeletons = _skeletons;
-	isDrawHandsEnabled = isDrawJointsEnabled = isDrawBonesEnabled = true;
+	isDrawJointsEnabled = isDrawBonesEnabled = true;
 	isDrawRangesEnabled = isFontEnabled = false;
 	isDraw3dEnabled = false;
 	ofEnableDepthTest();
@@ -99,29 +99,28 @@ void ccBodyRenderer::drawBone(Joint baseJoint, Joint connectingJoint) {
 
 	if (trackingState == TRACKED) {
 		ofSetLineWidth(10);
-		ofSetColor(ofColor::white);
-		if (isDraw3dEnabled) {
-			draw3dBone(baseJoint, connectingJoint);
-			ofDrawLine(baseJoint.getPoint(), connectingJoint.getPoint());
-			
-		}
-		else {
-			ofLine(baseJoint.getPoint(), connectingJoint.getPoint());
-		}
 	}
 	else if (trackingState == INFERRED) {
 		ofSetLineWidth(1);
-		ofSetColor(ofColor::gray);
-		if (isDraw3dEnabled) {
-			draw3dBone(baseJoint, connectingJoint);
-		}
-		else {
-			ofLine(baseJoint.getPoint(), connectingJoint.getPoint());
-		}
+	}
+
+	drawIn2dOr3d(baseJoint, connectingJoint);
+
+}
+
+void ccBodyRenderer::drawIn2dOr3d(Joint baseJoint, Joint connectingJoint) {
+	if (isDraw3dEnabled) {
+		draw3dBone(baseJoint, connectingJoint);
+	}
+	else {
+		ofLine(baseJoint.getPoint(), connectingJoint.getPoint());
 	}
 }
 
 void ccBodyRenderer::draw3dBone(Joint baseJoint, Joint connectingJoint) {
+	ofMaterial material;
+	material.setDiffuseColor(ofFloatColor(ofColor::thistle));
+
 	float baseJointX = baseJoint.getPoint().x;
 	float baseJointY = baseJoint.getPoint().y;
 	float connectingJointX = connectingJoint.getPoint().x;
@@ -150,11 +149,34 @@ void ccBodyRenderer::draw3dBone(Joint baseJoint, Joint connectingJoint) {
 	else {
 		ofRotateZ(angleDegrees);
 	}
-
-	ofDrawCylinder(0, 0, 0, 25, boneLength);
+	material.begin();
+	if (jointsAreHeadNeck(baseJoint, connectingJoint)) {
+		drawNeckBone(boneLength);
+	}
+	else {
+		ofDrawCylinder(0, 0, preSetZCoord, 25, boneLength*.6);
+	}
+	material.end();
 	ofRotateZ(-angle);
 	ofPopMatrix();
 
+}
+
+bool ccBodyRenderer::jointsAreHeadNeck(Joint baseJoint, Joint connectingJoint) {
+	bool headToNeck;
+	bool neckToHead;
+	headToNeck = (baseJoint.getType().find("Neck") != std::string::npos &&
+		connectingJoint.getType().find("Head") != std::string::npos);
+	neckToHead = (connectingJoint.getType().find("Neck") != std::string::npos &&
+		baseJoint.getType().find("Head") != std::string::npos);
+	
+	return (neckToHead || headToNeck);
+}
+
+void ccBodyRenderer::drawNeckBone(float boneLength) {
+	ofTranslate(0, -boneLength / 4, 0);
+	ofDrawCylinder(0, 0, preSetZCoord, 25, boneLength*0.1);
+	ofTranslate(0, boneLength / 4, 0);
 }
 
 float ccBodyRenderer::dot(ofVec3f a, ofVec3f b) {  //calculates dot product of a and b
@@ -238,13 +260,26 @@ void ccBodyRenderer::drawJoint(Joint joint) {
 	if (joint.getTrackingState() == TRACKED || joint.getTrackingState() == INFERRED) {
 		ofSetColor(ofColor::lightGray);
 		ofFill();
-		if (isDraw3dEnabled) {
-			ofDrawSphere(joint.getPoint().x, joint.getPoint().y, 0, 10);
+		drawJointIn2dOr3d(joint);
+	}
+}
+
+void ccBodyRenderer::drawJointIn2dOr3d(Joint joint) {
+	if (isDraw3dEnabled) {
+		if (isHead(joint)) {
+			ofDrawSphere(joint.getPoint().x, joint.getPoint().y, preSetZCoord, 80);
 		}
 		else {
-			ofCircle(joint.getPoint(), 10);
+			ofDrawSphere(joint.getPoint().x, joint.getPoint().y, preSetZCoord, 20);
 		}
 	}
+	else {
+		ofCircle(joint.getPoint(), 10);
+	}
+}
+
+bool ccBodyRenderer::isHead(Joint joint) {
+	return (joint.getType().find("Head") != std::string::npos);
 }
 
 void ccBodyRenderer::drawRanges() {
@@ -268,4 +303,10 @@ TrackingState ccBodyRenderer::combinedTrackingState(Joint &joint1, Joint &joint2
 	if (joint1.isInferred() && joint2.isTracked()) return INFERRED;
 	if (joint1.isTracked() && joint2.isInferred()) return INFERRED;
 	return NOT_TRACKED;
+}
+
+void ccBodyRenderer::setCoordinateSystem() {
+	preSetZCoord = -400;
+	ofTranslate(ofGetWidth() * 0.3, ofGetHeight() - (0.25*ofGetHeight()), -400);
+
 }

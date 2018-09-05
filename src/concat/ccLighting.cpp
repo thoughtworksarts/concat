@@ -13,7 +13,7 @@ void ccLighting::setup() {
     for (int i = 0; i < numLights; i++) {
         ofLight light;
         lights.push_back(light);
-        lights.back().setDiffuseColor(ofFloatColor(.85, .85, .55));
+        lights.back().setDiffuseColor(ofFloatColor(ofColor(100, 128, 128)));
         lights.back().setSpecularColor(ofFloatColor(1.f, 1.f, 1.f));
         lights.back().enable();
     }

@@ -42,6 +42,20 @@ public:
 	float dot(ofVec3f a, ofVec3f b);
 	float mag(ofVec3f a);
 
+	void ccBodyRenderer::setCoordinateSystem();
+
+	int preSetZCoord;
+
+	bool jointsAreHeadNeck(Joint baseJoint, Joint connectingJoint);
+
+	void drawIn2dOr3d(Joint baseJoint, Joint connectingJoint);
+
+	void drawJointIn2dOr3d(Joint joint);
+
+	void drawNeckBone(float boneLength);
+
+	bool isHead(Joint joint);
+
 
 
 protected:

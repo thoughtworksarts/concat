@@ -22,6 +22,7 @@ public:
 
 	void drawBox();
 
+	ofCylinderPrimitive cylinder;
 
 
 
@@ -36,7 +37,6 @@ protected:
 
 	ofMaterial segmentMaterial;
 	ofBoxPrimitive box;
-	ofCylinderPrimitive cylinder;
 	ofSpherePrimitive joint;
 
     bool showWireframes;

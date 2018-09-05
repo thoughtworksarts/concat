@@ -3,7 +3,6 @@
 void ccSegment::setup(ofMaterial& _material) {
     segmentMaterial = _material;
     showWireframes = false;
-    //setBoxSize(1, 1, 1);
 	setCylinderSize(1, 1);
     setJointRadius(1);
 	segmentIsMoving = false;
@@ -16,20 +15,9 @@ void ccSegment::translateToRotationCenter() {
 	
 }
 
-//TODO: Fix Smoothness of gradient
 void ccSegment::draw() {
 	if (segmentIsMoving) {
-		segmentMaterial.setDiffuseColor(ofFloatColor(ofColor(100+gradientDiff, 0, 50)));
-		if (gradientDiff < 255 && gradientSlope) {
-			gradientDiff++;
-		}
-		else if (gradientDiff > 0 && !gradientSlope) {
-			gradientDiff--;
-		}
-		else {
-			gradientSlope = !gradientSlope;
-		}
-		
+		segmentMaterial.setDiffuseColor(ofFloatColor(ofColor(100, 0, 0)));
 	}
 	else {
 		segmentMaterial.setDiffuseColor(ofFloatColor(ofColor::thistle));
@@ -47,14 +35,14 @@ void ccSegment::draw() {
 
 void ccSegment::setBoxSize(float width, float height, float depth) {
     box.set(width, height, depth);
-	cylinder.set(width / 2, height / 2, width, height / 4);
+	cylinder.set(width / 2, height * 0.80, width, height / 2);
     halfBoxWidth = width * 0.5;
     halfBoxHeight = height * 0.5;
     calculateSegmentHeight();
 }
 
 void ccSegment::setCylinderSize(float width, float height) {
-	cylinder.set(width / 2, height, width, height);
+	cylinder.set(width / 2, height*5, width, height*5);
 	calculateCylinderSegmentHeight();
 }
 

@@ -27,9 +27,15 @@ void ccRobot::update() {
 
 void ccRobot::draw() {
     ofBackground(ofColor::black);
+	ofBackground(.5, 0);
     ofPushMatrix();
     setCoordinateSystem();
+
+	ofTranslate(-600, -150, 0);
+	ofRotateX(20);
 	baseSegment.draw();
+	ofRotateX(-20);
+	ofTranslate(600, 150, 0);
 
     ofRotateYDeg(currentAngles.at(0).getCurrentValue() - 90);
     ofRotateZDeg(currentAngles.at(1).getCurrentValue());
@@ -44,6 +50,7 @@ void ccRobot::draw() {
 		}
 	}
     lowerSegment.draw();
+	
 
     upperSegment.translateToRotationCenter();
     ofRotateZDeg(currentAngles.at(2).getCurrentValue() + 90);
@@ -119,15 +126,15 @@ void ccRobot::setupSegments() {
 
     baseSegment.setup(material);
     baseSegment.setJointRadius(0);
-    baseSegment.setBoxSize(800, 50, 800);
+    baseSegment.setBoxSize(2000, 20, 800);
 
     lowerSegment.setup(material);
-    lowerSegment.setJointRadius(100);
-    lowerSegment.setBoxSize(90, 460, 90);
+    lowerSegment.setJointRadius(100); 
+    lowerSegment.setBoxSize(90, 800, 90);
 
     upperSegment.setup(material);
     upperSegment.setJointRadius(50);
-    upperSegment.setBoxSize(70, 340, 70);
+    upperSegment.setBoxSize(70, 400, 70);
 
     headSegment.setup(material);
     headSegment.setJointRadius(35);
@@ -156,7 +163,7 @@ void ccRobot::resetToIndexPosition() {
 }
 
 void ccRobot::setCoordinateSystem() {
-	ofTranslate(ofGetWidth() * 0.75, ofGetHeight(), -400);
+	ofTranslate(ofGetWidth() * 0.7, ofGetHeight()- (.15*ofGetHeight()), -400);
 	ofRotateZDeg(180);
 	ofRotateYDeg(180);
 }
@@ -170,6 +177,7 @@ bool ccRobot::oneSecondHasPassed() {
 }
 
 bool ccRobot::jointIsInMotion(int angleIndex1, int angleIndex2) {
+
 	if ((currentAngles.at(angleIndex1).getCurrentValue() 
 		!= targetAngles.at(currentPositionIndex).at(angleIndex1))
 		|| (currentAngles.at(angleIndex2).getCurrentValue() 
