@@ -1,11 +1,14 @@
 #include "ccKinect.h"
 
-void ccKinect::setup() {
+void ccKinect::setup(vector<bool> _bodyGroupStates) {
     smallFont.load("selena.otf", 16);
     largeFont.load("selena.otf", 48);
     kinect.setup(12345, smallFont);
     skeletons = kinect.getSkeletons();
-    renderer.setup(skeletons, largeFont);
+
+	bodyGroupStates = _bodyGroupStates;
+
+    renderer.setup(skeletons, largeFont, bodyGroupStates);
 
     infoPosition.x = ofGetWidth() * 0.25;
     infoPosition.y = ofGetHeight() * 0.5;
@@ -13,10 +16,11 @@ void ccKinect::setup() {
 
 	renderer.setCoordinateSystem();
 
-	
 }
 
-void ccKinect::update() {
+void ccKinect::update(vector<bool> _bodyGroupStates) {
+	bodyGroupStates = _bodyGroupStates;
+	renderer.updateBodyGroupStates(bodyGroupStates);
     kinect.update();
 }
 

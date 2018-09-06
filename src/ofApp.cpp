@@ -2,20 +2,23 @@
 
 void ofApp::setup(){
     ofToggleFullscreen();
+	bodyGroupStates = { 0, 0, 0 };
     dataParser.setup();
     robot.setup(dataParser.getTargetAngles());
     lighting.setup();
-    kinect.setup();
+    kinect.setup(bodyGroupStates);
     info.setup();
     clock.setup();
+
 }
 
 void ofApp::update(){
-	kinect.update();
+	kinect.update(bodyGroupStates);
     robot.update();
     lighting.update();
     info.update(dataParser.getCurrentFileName());
     clock.update();
+	updateBodyGroupStates();
 }
 
 void ofApp::draw(){
@@ -25,6 +28,15 @@ void ofApp::draw(){
     lighting.draw();
     info.draw();
     clock.draw();
+}
+
+void ofApp::updateBodyGroupStates() {
+	bodyGroupStates.clear();
+	for (int i = 0; i < robot.segmentStates.size(); i++) {
+		bool state;
+		state = robot.segmentStates.at(i);
+		bodyGroupStates.push_back(state);
+	}
 }
 
 void ofApp::keyPressed(int key){

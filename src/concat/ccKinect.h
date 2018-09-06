@@ -7,11 +7,13 @@
 class ccKinect {
 
 public:
-	void setup();
-	void update();
+	void setup(vector<bool> _bodyGroupStates);
+	void update(vector<bool> _bodyGroupStates);
     void draw();
 
 	void enable3d();
+
+	vector<bool> bodyGroupStates;
 
 protected:
     void drawSkeletons();
@@ -22,4 +24,5 @@ protected:
     ofTrueTypeFont smallFont, largeFont;
 	ccBodyRenderer renderer;
     ofVec2f infoPosition, renderTranslation;
+
 };

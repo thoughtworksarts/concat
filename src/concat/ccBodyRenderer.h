@@ -5,7 +5,7 @@
 class ccBodyRenderer {
 public:
 	virtual void setup(vector<Skeleton>* _skeletons);
-	virtual void setup(vector<Skeleton>* _skeletons, ofTrueTypeFont _font);
+	virtual void setup(vector<Skeleton>* _skeletons, ofTrueTypeFont _font, vector<bool> _bodyGroupStates);
 	void draw();
 	void drawSkeleton(Skeleton* _skeleton);
 	void loadFont(ofTrueTypeFont _font);
@@ -56,6 +56,37 @@ public:
 
 	bool isHead(Joint joint);
 
+	vector<Joint> headGroup;
+
+	vector<Joint> upperBodyGroup;
+
+	vector<Joint> lowerBodyGroup;
+
+	void setupBodyGroups(Skeleton* skeleton);
+
+	vector<bool> bodyGroupStates;
+
+	void updateBodyGroupStates(vector<bool> _bodyGroupStates);
+
+	void assignColorByGroup(Joint baseJoint, Joint connectingJoint);
+
+	ofMaterial material;
+
+	bool headGroupIsMoving();
+
+	bool upperBodyGroupIsMoving();
+
+	bool lowerBodyGroupIsMoving();
+
+	bool jointIsInHead(Joint joint);
+
+	bool jointIsInLowerBody(Joint joint);
+
+	bool jointIsInUpperBody(Joint joint);
+
+	void setColorRed();
+
+	void setColorDefault();
 
 
 protected:
@@ -67,4 +98,5 @@ protected:
 	string normalReport;
 
 	bool isDrawHandsEnabled, isDrawBonesEnabled, isDrawJointsEnabled, isDrawRangesEnabled, isFontEnabled;
+
 };

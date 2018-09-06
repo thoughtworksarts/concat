@@ -10,6 +10,9 @@ void ccRobot::setup(const vector<vector<float>>& _targetAngles) {
 	setupCurrentAngles();
 	setupSegments();
     ofEnableDepthTest();
+
+	segmentStates = { 0, 0, 0 };
+
 }
 
 void ccRobot::update() {
@@ -22,7 +25,15 @@ void ccRobot::update() {
         for (int i = 0; i < currentAngles.size(); i++) {
             currentAngles.at(i).update(ofGetLastFrameTime());
         }
+		updateSegmentStates();
     }
+}
+
+void ccRobot::updateSegmentStates() {
+	segmentStates.clear();
+	segmentStates.push_back(headSegment.isSegmentMoving());
+	segmentStates.push_back(upperSegment.isSegmentMoving());
+	segmentStates.push_back(lowerSegment.isSegmentMoving());
 }
 
 void ccRobot::draw() {

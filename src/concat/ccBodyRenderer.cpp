@@ -1,5 +1,6 @@
 #include "ccBodyRenderer.h"
 #include <cmath>
+#include <algorithm>
 
 void ccBodyRenderer::setup(vector<Skeleton>* _skeletons) {
 	skeletons = _skeletons;
@@ -9,9 +10,14 @@ void ccBodyRenderer::setup(vector<Skeleton>* _skeletons) {
 	ofEnableDepthTest();
 }
 
-void ccBodyRenderer::setup(vector<Skeleton>* _skeletons, ofTrueTypeFont _font) {
+void ccBodyRenderer::setup(vector<Skeleton>* _skeletons, ofTrueTypeFont _font, vector<bool> _bodyGroupStates) {
+	bodyGroupStates = _bodyGroupStates;
 	setup(_skeletons);
 	loadFont(_font);
+}
+
+void ccBodyRenderer::updateBodyGroupStates(vector<bool> _bodyGroupStates) {
+	bodyGroupStates = _bodyGroupStates;
 }
 
 void ccBodyRenderer::draw() {
@@ -29,6 +35,7 @@ void ccBodyRenderer::toggleDraw3d() {
 
 void ccBodyRenderer::drawSkeleton(Skeleton* _skeleton) {
 	skeleton = _skeleton;
+	setupBodyGroups(skeleton);
 	if (isDrawHandsEnabled)  drawHands();
 	if (isDrawBonesEnabled)  drawBones();
 	if (isDrawJointsEnabled) drawJoints();
@@ -117,9 +124,73 @@ void ccBodyRenderer::drawIn2dOr3d(Joint baseJoint, Joint connectingJoint) {
 	}
 }
 
+void ccBodyRenderer::assignColorByGroup(Joint baseJoint, Joint connectingJoint) {
+	if (upperBodyGroupIsMoving()) {
+		if (jointIsInUpperBody(baseJoint) || jointIsInUpperBody(connectingJoint)) {
+				setColorRed();
+		}
+	} 
+	if (lowerBodyGroupIsMoving()) {
+		if (jointIsInLowerBody(baseJoint) || jointIsInLowerBody(connectingJoint)) {
+				setColorRed();
+		}
+	}
+	if (headGroupIsMoving()) {
+		if (jointIsInHead(baseJoint) || jointIsInHead(connectingJoint)) {
+			setColorRed();
+		}
+	}
+	
+}
+
+bool ccBodyRenderer::jointIsInHead(Joint joint) {
+	for (int i = 0; i < headGroup.size(); i++) {
+		string jointType = headGroup.at(i).getType();
+		if (jointType._Equal(joint.getType()) ) {
+			return true;
+		}
+		}
+	return false;
+	
+}
+
+bool ccBodyRenderer::jointIsInLowerBody(Joint joint) {
+	for (int i = 0; i < lowerBodyGroup.size(); i++) {
+		string jointType = lowerBodyGroup.at(i).getType();
+		if (jointType._Equal(joint.getType())) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool ccBodyRenderer::jointIsInUpperBody(Joint joint) {
+	for (int i = 0; i < upperBodyGroup.size(); i++) {
+		string jointType = upperBodyGroup.at(i).getType();
+		if (jointType._Equal(joint.getType())) {
+			return true;
+		}
+	}
+	return false; 
+}
+
+bool ccBodyRenderer::headGroupIsMoving() {
+	return bodyGroupStates.at(0);
+}
+
+bool ccBodyRenderer::upperBodyGroupIsMoving() {
+	return bodyGroupStates.at(1);
+}
+
+bool ccBodyRenderer::lowerBodyGroupIsMoving() {
+	return bodyGroupStates.at(2);
+}
+
+
+
 void ccBodyRenderer::draw3dBone(Joint baseJoint, Joint connectingJoint) {
-	ofMaterial material;
 	material.setDiffuseColor(ofFloatColor(ofColor::thistle));
+	assignColorByGroup(baseJoint, connectingJoint);
 
 	float baseJointX = baseJoint.getPoint().x;
 	float baseJointY = baseJoint.getPoint().y;
@@ -142,6 +213,7 @@ void ccBodyRenderer::draw3dBone(Joint baseJoint, Joint connectingJoint) {
 	float angleDegrees = (angle * 180) / PI;
 
 	ofPushMatrix();
+
 	ofTranslate(centerPoint);
 	if(baseJointX>connectingJointX) {
 		ofRotateZ(-angleDegrees);
@@ -157,6 +229,7 @@ void ccBodyRenderer::draw3dBone(Joint baseJoint, Joint connectingJoint) {
 		ofDrawCylinder(0, 0, preSetZCoord, 25, boneLength*.6);
 	}
 	material.end();
+	setColorDefault();
 	ofRotateZ(-angle);
 	ofPopMatrix();
 
@@ -260,7 +333,11 @@ void ccBodyRenderer::drawJoint(Joint joint) {
 	if (joint.getTrackingState() == TRACKED || joint.getTrackingState() == INFERRED) {
 		ofSetColor(ofColor::lightGray);
 		ofFill();
+		assignColorByGroup(joint, joint);
+		material.begin();
 		drawJointIn2dOr3d(joint);
+		material.end();
+		setColorDefault();
 	}
 }
 
@@ -310,3 +387,51 @@ void ccBodyRenderer::setCoordinateSystem() {
 	ofTranslate(ofGetWidth() * 0.3, ofGetHeight() - (0.25*ofGetHeight()), -400);
 
 }
+
+void ccBodyRenderer::setColorRed() {
+	material.setDiffuseColor(ofFloatColor(ofColor(100, 0, 0)));
+}
+
+void ccBodyRenderer::setColorDefault() {
+	material.setDiffuseColor(ofFloatColor(ofColor::thistle));
+}
+
+void ccBodyRenderer::setupBodyGroups(Skeleton* skeleton) {
+
+	headGroup.clear();
+	upperBodyGroup.clear();
+	lowerBodyGroup.clear();
+
+
+	headGroup.push_back(skeleton->getHead());
+	headGroup.push_back(skeleton->getNeck());
+
+	upperBodyGroup.push_back(skeleton->getElbowLeft());
+	upperBodyGroup.push_back(skeleton->getElbowRight());
+	upperBodyGroup.push_back(skeleton->getHandLeft());
+	upperBodyGroup.push_back(skeleton->getHandRight());
+	upperBodyGroup.push_back(skeleton->getHandTipLeft());
+	upperBodyGroup.push_back(skeleton->getHandTipRight());
+	upperBodyGroup.push_back(skeleton->getShoulderLeft());
+	upperBodyGroup.push_back(skeleton->getShoulderRight());
+	upperBodyGroup.push_back(skeleton->getSpineBase());
+	upperBodyGroup.push_back(skeleton->getSpineMid());
+	upperBodyGroup.push_back(skeleton->getWristLeft());
+	upperBodyGroup.push_back(skeleton->getWristRight());
+	upperBodyGroup.push_back(skeleton->getThumbLeft());
+	upperBodyGroup.push_back(skeleton->getThumbRight());
+	upperBodyGroup.push_back(skeleton->getSpineShoulder());
+
+	lowerBodyGroup.push_back(skeleton->getAnkleLeft());
+	lowerBodyGroup.push_back(skeleton->getAnkleRight());
+	lowerBodyGroup.push_back(skeleton->getFootLeft());
+	lowerBodyGroup.push_back(skeleton->getFootRight());
+	lowerBodyGroup.push_back(skeleton->getHipLeft());
+	lowerBodyGroup.push_back(skeleton->getHipRight());
+	lowerBodyGroup.push_back(skeleton->getKneeRight());
+	lowerBodyGroup.push_back(skeleton->getKneeLeft());
+
+}
+
+
+

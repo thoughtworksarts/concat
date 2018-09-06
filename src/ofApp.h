@@ -16,6 +16,10 @@ public:
     void draw();
     void keyPressed(int key);
 
+	vector<bool> bodyGroupStates;
+
+	void updateBodyGroupStates();
+
 protected:
     ccParser dataParser;
     ccInfo info;
@@ -23,4 +27,5 @@ protected:
     ccRobot robot;
     ccLighting lighting;
     ccKinect kinect;
+
 };

@@ -15,6 +15,10 @@ public:
     void resetAnimation();
     void toggleWireframes();
 
+	vector<bool> segmentStates;
+
+	void updateSegmentStates();
+
 protected:
     void setupCurrentAngles();
     void setupSegments();
