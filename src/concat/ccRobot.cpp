@@ -42,11 +42,11 @@ void ccRobot::draw() {
     ofPushMatrix();
     setCoordinateSystem();
 
-	ofTranslate(-600, -150, 0);
+	ofTranslate(-600, -250, 0);
 	ofRotateX(20);
 	baseSegment.draw();
 	ofRotateX(-20);
-	ofTranslate(600, 150, 0);
+	ofTranslate(600, 250, 0);
 
     ofRotateYDeg(currentAngles.at(0).getCurrentValue() - 90);
     ofRotateZDeg(currentAngles.at(1).getCurrentValue());

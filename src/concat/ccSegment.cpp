@@ -17,7 +17,7 @@ void ccSegment::translateToRotationCenter() {
 
 void ccSegment::draw() {
 	if (segmentIsMoving) {
-		segmentMaterial.setDiffuseColor(ofFloatColor(ofColor(100, 0, 0)));
+		segmentMaterial.setDiffuseColor(ofFloatColor(ofColor(220, 20, 10)));
 	}
 	else {
 		segmentMaterial.setDiffuseColor(ofFloatColor(ofColor::thistle));

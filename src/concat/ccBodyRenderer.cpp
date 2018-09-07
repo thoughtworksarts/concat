@@ -94,6 +94,7 @@ void ccBodyRenderer::drawHand(Hand hand, Joint handJoint) {
 }
 
 void ccBodyRenderer::drawBones() {
+	ofTranslate(0, -500, 0);
 	drawTorso();
 	drawRightArm();
 	drawLeftArm();
@@ -120,7 +121,8 @@ void ccBodyRenderer::drawIn2dOr3d(Joint baseJoint, Joint connectingJoint) {
 		draw3dBone(baseJoint, connectingJoint);
 	}
 	else {
-		ofLine(baseJoint.getPoint(), connectingJoint.getPoint());
+		ofLine(baseJoint.getPoint().x, baseJoint.getPoint().y, preSetZCoord, connectingJoint.getPoint().x, connectingJoint.getPoint().y, preSetZCoord);
+
 	}
 }
 
@@ -222,7 +224,7 @@ void ccBodyRenderer::draw3dBone(Joint baseJoint, Joint connectingJoint) {
 		ofRotateZ(angleDegrees);
 	}
 	material.begin();
-	if (jointsAreHeadNeck(baseJoint, connectingJoint)) {
+	if (jointIsInHead(baseJoint) || jointIsInHead(connectingJoint)) {
 		drawNeckBone(boneLength);
 	}
 	else {
@@ -233,17 +235,6 @@ void ccBodyRenderer::draw3dBone(Joint baseJoint, Joint connectingJoint) {
 	ofRotateZ(-angle);
 	ofPopMatrix();
 
-}
-
-bool ccBodyRenderer::jointsAreHeadNeck(Joint baseJoint, Joint connectingJoint) {
-	bool headToNeck;
-	bool neckToHead;
-	headToNeck = (baseJoint.getType().find("Neck") != std::string::npos &&
-		connectingJoint.getType().find("Head") != std::string::npos);
-	neckToHead = (connectingJoint.getType().find("Neck") != std::string::npos &&
-		baseJoint.getType().find("Head") != std::string::npos);
-	
-	return (neckToHead || headToNeck);
 }
 
 void ccBodyRenderer::drawNeckBone(float boneLength) {
@@ -351,7 +342,7 @@ void ccBodyRenderer::drawJointIn2dOr3d(Joint joint) {
 		}
 	}
 	else {
-		ofCircle(joint.getPoint(), 10);
+		ofCircle(joint.getPoint().x, joint.getPoint().y, preSetZCoord, 10);
 	}
 }
 
@@ -384,12 +375,12 @@ TrackingState ccBodyRenderer::combinedTrackingState(Joint &joint1, Joint &joint2
 
 void ccBodyRenderer::setCoordinateSystem() {
 	preSetZCoord = -400;
-	ofTranslate(ofGetWidth() * 0.3, ofGetHeight() - (0.25*ofGetHeight()), -400);
+	ofTranslate(ofGetWidth() * 0.3, ofGetHeight(), -400);
 
 }
 
 void ccBodyRenderer::setColorRed() {
-	material.setDiffuseColor(ofFloatColor(ofColor(100, 0, 0)));
+	material.setDiffuseColor(ofFloatColor(ofColor(220, 20, 10)));
 }
 
 void ccBodyRenderer::setColorDefault() {

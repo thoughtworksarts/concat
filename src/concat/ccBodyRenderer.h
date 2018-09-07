@@ -46,8 +46,6 @@ public:
 
 	int preSetZCoord;
 
-	bool jointsAreHeadNeck(Joint baseJoint, Joint connectingJoint);
-
 	void drawIn2dOr3d(Joint baseJoint, Joint connectingJoint);
 
 	void drawJointIn2dOr3d(Joint joint);
