@@ -25,9 +25,9 @@ void ccSegment::draw() {
     segmentMaterial.begin();
     ofFill();
     ofPushMatrix();
-    drawJoint();
+	drawJoint();
 	drawCylinder();
-    drawRotationHandle();
+	drawRotationHandle();
     ofPopMatrix();
     ofTranslate(0, segmentHeight);
     segmentMaterial.end();

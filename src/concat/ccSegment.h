@@ -25,7 +25,6 @@ public:
 	ofCylinderPrimitive cylinder;
 
 
-
 protected:
     void calculateSegmentHeight();
 	void calculateCylinderSegmentHeight();

@@ -17,6 +17,6 @@ void ccInfo::update(string currentFileName) {
 }
 
 void ccInfo::draw() {
-    ofSetColor(ofColor::white);
-    ofDrawBitmapString(info, infoPosition);
+    //ofSetColor(ofColor::white);
+    //ofDrawBitmapString(info, infoPosition);
 }

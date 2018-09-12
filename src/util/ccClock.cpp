@@ -18,7 +18,7 @@ void ccClock::update() {
 }
 
 void ccClock::draw() {
-    font.drawString(clock, timePosition.x, timePosition.y);
+    //font.drawString(clock, timePosition.x, timePosition.y);
 }
 
 void ccClock::stop() {

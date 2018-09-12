@@ -60,8 +60,7 @@ void ccRobot::draw() {
 			lowerSegment.toggleSegmentHasMoved();
 		}
 	}
-    lowerSegment.draw();
-	
+	lowerSegment.draw();
 
     upperSegment.translateToRotationCenter();
     ofRotateZDeg(currentAngles.at(2).getCurrentValue() + 90);
@@ -124,7 +123,7 @@ void ccRobot::setupCurrentAngles() {
     for (int i = 0; i < numAngles; i++) {
         currentAngles.push_back(angle);
         currentAngles.back().setup();
-        currentAngles.back().setDuration(1);
+        currentAngles.back().setDuration(.5);
         currentAngles.back().setCurve(LINEAR);
         currentAngles.back().reset(targetAngles.at(0).at(i));
     }
@@ -181,7 +180,7 @@ void ccRobot::setCoordinateSystem() {
 
 bool ccRobot::oneSecondHasPassed() {
     uint64_t elapsed = ofGetElapsedTimeMillis();
-    int currentMod = elapsed % 1000;
+    int currentMod = elapsed % 500;
     bool returnValue = currentMod < previousMod;
     previousMod = currentMod;
     return returnValue;
