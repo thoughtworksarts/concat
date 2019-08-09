@@ -1,29 +1,31 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxAnimatableFloat.h"
+#include "util/ccParser.h"
+#include "util/ccClock.h"
+#include "util/ccInfo.h"
+#include "concat/ccRobot.h"
+#include "concat/ccLighting.h"
+#include "concat/ccKinect.h"
 
 class ofApp : public ofBaseApp{
-    public:
+
+public:
     void setup();
-    void setupTargetAngles();
-    void setupCurrentAngles();
     void update();
-    void incrementTargetArmPosition();
-    void animateToNewArmPosition();
     void draw();
-    void drawArmSegment();
-    void drawHead();
-    void setCoordinateSystem();
+    void keyPressed(int key);
 
-    int numAngles;
-    int armSegmentLength, halfArmSegmentLength;
-    int headLength, halfHeadLength;
-    int rotationHandleLength;
+	vector<bool> bodyGroupStates;
 
-    int segmentThickness;
+	void updateBodyGroupStates();
 
-    vector<vector<float>> targetAngles;
-    vector<ofxAnimatableFloat> currentAngles;
-    int currentArmPosition;
+protected:
+    ccParser dataParser;
+    ccInfo info;
+    ccClock clock;
+    ccRobot robot;
+    ccLighting lighting;
+    ccKinect kinect;
+
 };
