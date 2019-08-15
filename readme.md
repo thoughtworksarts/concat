@@ -6,6 +6,11 @@ The depth skeleton can optionally be rendered as a 3D figure made of cylinders v
 
 ![The team working with the robot arm](images/team.jpg)
 
+![Catie Cuan performing with the concat tool. Still from video by Kevin Barry](images/catie_3.jpg)
+
+![Still from video by Kevin Barry](images/catie_2.jpg)
+Stills from video of Catie Cuan's performance with the concat tool. Video by Kevin Barry at ThoughtWorks.
+
 This codebase was developed to support artist Catie Cuan as part of [her residency at ThoughtWorks Arts](https://thoughtworksarts.io/bio/catie-cuan/). It runs on openFrameworks and requires a KinectV2 depth sensor.
 
 ![A shot of concat running](images/screengrab.jpg)
